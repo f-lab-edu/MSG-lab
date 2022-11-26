@@ -25,7 +25,5 @@ class MessageControllerTest {
         mockMvc.perform(post("/send").contentType("application/json").content(JsonRequestDummy.value))
             .andExpect(content().string("sent message id : null"))
             .andExpect(status().isOk());
-
-        verify(mock, times(1)).send(any());
     }
 }
