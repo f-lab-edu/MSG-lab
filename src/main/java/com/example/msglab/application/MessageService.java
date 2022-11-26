@@ -10,8 +10,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class MessageService {
 
+    private final ObjectMapper mapper = new ObjectMapper();
     public String send(Message message) throws JsonProcessingException {
-        ObjectMapper mapper = new ObjectMapper();
         // todo(hun) : 변환하려는 객체의 필드가 private이면 올바르게 매핑 못해주는 경우가 있습니다.
         //  이런 외부 라이브러리의 에러는 어디서 테스트해야 할까요?(아래와 같이 설정해줘야 올바르게 매핑됩니다.)
         mapper.setVisibility(PropertyAccessor.FIELD, Visibility.ANY);
