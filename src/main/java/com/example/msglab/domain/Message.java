@@ -1,15 +1,13 @@
 package com.example.msglab.domain;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Getter;
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
-@Getter
+@NoArgsConstructor
+@AllArgsConstructor
+@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 public class Message {
-    private final String to;
-    private final Notification notification;
-
-    public Message(@JsonProperty("to") String to, @JsonProperty("notification") Notification notification) {
-        this.to = to;
-        this.notification = notification;
-    }
+    private String to;
+    private Notification notification;
 }
