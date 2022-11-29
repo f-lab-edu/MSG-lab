@@ -1,5 +1,6 @@
-package com.example.msglab.application;
+package com.example.msglab.adapter;
 
+import com.example.msglab.application.MessageClientRespFCM;
 import com.example.msglab.domain.MessageClient;
 import com.example.msglab.domain.MessageClientResp;
 import com.example.msglab.domain.MessageURL;
