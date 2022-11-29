@@ -1,11 +1,14 @@
 package com.example.msglab.domain;
 
-public class Notification {
-    private final String title;
-    private final String body;
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
-    public Notification(String title, String body) {
-        this.title = title;
-        this.body = body;
-    }
+@NoArgsConstructor
+@AllArgsConstructor
+@JsonAutoDetect(fieldVisibility = Visibility.ANY)
+public class Notification {
+    private String title;
+    private String body;
 }
