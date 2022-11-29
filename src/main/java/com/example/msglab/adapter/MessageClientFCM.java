@@ -1,8 +1,7 @@
 package com.example.msglab.adapter;
 
-import com.example.msglab.application.MessageClientRespFCM;
-import com.example.msglab.domain.MessageClient;
 import com.example.msglab.domain.MessageClientResp;
+import com.example.msglab.domain.MessageClient;
 import com.example.msglab.domain.MessageURL;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -33,7 +32,7 @@ public class MessageClientFCM implements MessageClient {
     public MessageClientResp send(String message) {
         HttpEntity<String> request = createRequest(message);
         ResponseEntity<String> response = postRequest(request);
-        return new MessageClientRespFCM(response);
+        return new MessageClientResp(response);
     }
 
     private ResponseEntity<String> postRequest(HttpEntity<String> request) {
