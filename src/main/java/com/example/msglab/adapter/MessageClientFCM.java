@@ -1,6 +1,5 @@
 package com.example.msglab.adapter;
 
-import com.example.msglab.domain.MessageClientResp;
 import com.example.msglab.domain.MessageClient;
 import com.example.msglab.domain.MessageURL;
 import org.springframework.http.HttpEntity;
@@ -29,10 +28,10 @@ public class MessageClientFCM implements MessageClient {
     private final RestTemplate restTemplate = new RestTemplate();
 
     @Override
-    public MessageClientResp send(String message) {
+    public void send(String message) {
         HttpEntity<String> request = createRequest(message);
         ResponseEntity<String> response = postRequest(request);
-        return new MessageClientResp(response);
+        // todo(hun) : post 요청이 실패하면 retry하는 로직 구현하기
     }
 
     private ResponseEntity<String> postRequest(HttpEntity<String> request) {
