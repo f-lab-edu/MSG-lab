@@ -42,4 +42,5 @@ jobs:
        cp build/libs/*.jar deploy/
        cd deploy && zip -r a.zip .
        ls
+       aws configure
       shell: bash
