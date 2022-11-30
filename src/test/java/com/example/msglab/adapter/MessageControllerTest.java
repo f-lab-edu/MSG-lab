@@ -20,7 +20,7 @@ class MessageControllerTest {
         MessageService mock = mock(MessageService.class);
         MockMvc mockMvc = MockMvcBuilders.standaloneSetup(new MessageController(mock)).build();
         mockMvc.perform(post("/send").contentType("application/json").content(JsonRequestDummy.value))
-            .andExpect(content().string("sent message id : null"))
+            .andExpect(content().string("sent message"))
             .andExpect(status().isOk());
     }
 }

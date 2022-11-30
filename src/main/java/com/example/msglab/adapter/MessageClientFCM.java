@@ -1,31 +1,36 @@
 package com.example.msglab.adapter;
 
 import com.example.msglab.domain.MessageClient;
-import com.example.msglab.domain.MessageURL;
+import javax.annotation.PostConstruct;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 /**
  * FCM으로 push message 발송하는 구현체
  */
+@Component
 public class MessageClientFCM implements MessageClient {
 
-    // todo(hun) : auth키를 인터넷에 공개할 수 없습니다.
-    //  해결하기 위해 스프링의 프로필을 적용할 수 있을것 같습니다.
-    //  좋은 방법이 있으면 알려주세요.
-    private static final String auth = "";
+    @Value("${fcm.auth}")
+    private String auth;
 
-    private static HttpHeaders headers = new HttpHeaders();
+    @Value("${fcm.url}")
+    private String url;
 
-    static {
+    private HttpHeaders headers = new HttpHeaders();
+
+    private final RestTemplate restTemplate = new RestTemplate();
+
+    @PostConstruct
+    private void init() {
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.add("Authorization", auth);
     }
-
-    private final RestTemplate restTemplate = new RestTemplate();
 
     @Override
     public void send(String message) {
@@ -35,7 +40,7 @@ public class MessageClientFCM implements MessageClient {
     }
 
     private ResponseEntity<String> postRequest(HttpEntity<String> request) {
-        return restTemplate.postForEntity(MessageURL.FCM.getUrl(), request, String.class);
+        return restTemplate.postForEntity(url, request, String.class);
     }
 
     private HttpEntity<String> createRequest(String message) {
