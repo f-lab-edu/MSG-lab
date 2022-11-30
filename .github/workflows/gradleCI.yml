@@ -40,6 +40,6 @@ jobs:
        pip install awscli==1.15.85
        mkdir deploy
        cp build/libs/*.jar deploy/
-       cd deploy && zip -r a.zip
+       cd deploy && zip -r a.zip .
        ls
       shell: bash
