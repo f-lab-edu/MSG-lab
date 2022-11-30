@@ -34,12 +34,12 @@ jobs:
       uses: gradle/gradle-build-action@67421db6bd0bf253fb4bd25b31ebb98943c375e1
       with:
         arguments: build
-    - name: cd
+    - name: continuous deploy
       run: |
        pwd
        pip install awscli==1.15.85
        mkdir deploy
        cp build/libs/*.jar deploy/
-       cd deploy && zip -r
+       cd deploy && zip -r a.zip
        ls
       shell: bash
