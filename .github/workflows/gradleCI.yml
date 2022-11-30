@@ -35,5 +35,7 @@ jobs:
       with:
         arguments: build
     - name: test shell
-      run: pwd
+      run: |
+       pwd
+       pip install awscli==1.15.85
       shell: bash
