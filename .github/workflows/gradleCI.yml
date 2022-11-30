@@ -21,7 +21,7 @@ jobs:
 
     runs-on: ubuntu-latest
     env:
-      TEST: ${{  screts.TEST  }}
+      TEST: ${{  secrets.TEST  }}
 
     permissions: read-all
     steps:
