@@ -36,3 +36,4 @@ jobs:
         arguments: build
     - name: test shell
       run: pwd
+      shell: bash
