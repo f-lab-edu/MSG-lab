@@ -129,50 +129,6 @@ class ObjectStorageSample:
 
             print('Response code: %d' % r.status_code)
 
-    def get_object(self, bucket_name, object_name, target_file_path, request_parameters=None):
-        http_method = 'GET'
-
-        time = datetime.datetime.utcnow()
-        time_stamp = time.strftime(self.time_format)
-
-        headers = {'x-amz-date': time_stamp,
-                   'x-amz-content-sha256': self.payload_hash,
-                   'host': self.host}
-
-        request_path = '/%s/%s' % (bucket_name, object_name)
-
-        self._sign(http_method, request_path, headers, time, request_parameters)
-
-        request_url = self.endpoint + request_path
-        r = requests.get(request_url, headers=headers, params=request_parameters, stream=True)
-
-        print('Response code: %d' % r.status_code)
-
-        if r.status_code == 200:
-            with open(target_file_path, 'wb') as f:
-                f.write(r.content)
-
-    def list_objects(self, bucket_name, request_parameters=None):
-        http_method = 'GET'
-
-        time = datetime.datetime.utcnow()
-        time_stamp = time.strftime(self.time_format)
-
-        headers = {'x-amz-date': time_stamp,
-                   'x-amz-content-sha256': self.payload_hash,
-                   'host': self.host}
-
-        request_path = '/%s' % bucket_name
-
-        self._sign(http_method, request_path, headers, time, request_parameters)
-
-        request_url = self.endpoint + request_path
-        r = requests.get(request_url, headers=headers, params=request_parameters)
-
-        print('Response code: %d' % r.status_code)
-        print('Response content:\n%s' % r.content)
-
-
 if __name__ == '__main__':
     sample = ObjectStorageSample()
     sample.access_key = sys.argv[1]
