@@ -2,7 +2,6 @@ package com.example.msglab.adapter;
 
 import com.example.msglab.application.MessageService;
 import com.example.msglab.domain.Message;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,7 +24,7 @@ public class MessageController {
         return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
     }
     @PostMapping("/send")
-    public String sendMsg(@RequestBody Message message) throws JsonProcessingException {
+    public String sendMsg(@RequestBody Message message) {
         service.send(message);
         return "sent message";
     }

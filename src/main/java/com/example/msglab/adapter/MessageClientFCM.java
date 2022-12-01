@@ -13,7 +13,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageConversionException;
 import org.springframework.stereotype.Component;
-import org.springframework.web.client.RestTemplate;
 
 /**
  * FCM으로 push message 발송하는 구현체
@@ -25,11 +24,12 @@ public class MessageClientFCM implements MessageClient {
     private final ConfigFCM configFCM;
     private HttpHeaders headers = new HttpHeaders();
 
-    private final RestTemplate restTemplate = new RestTemplate();
+    private final WebClinet webClinet;
     private final ObjectMapper mapper = new ObjectMapper();
 
+
     @PostConstruct
-    private void init() {
+    final void init() {
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.add("Authorization", configFCM.getAuth());
     }
@@ -57,6 +57,6 @@ public class MessageClientFCM implements MessageClient {
     }
 
     private ResponseEntity<String> postRequest(HttpEntity<String> request) {
-        return restTemplate.postForEntity(configFCM.getUrl(), request, String.class);
+        return webClinet.postForEntity(configFCM.getUrl(), request, String.class);
     }
 }
