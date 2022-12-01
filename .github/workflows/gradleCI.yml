@@ -44,5 +44,5 @@ jobs:
        cp build/libs/*.jar deploy/
        ls
        sudo apt-get update -y
-       sudo apt install python3.11.0 -y
+       sudo apt install python3.11 -y
       shell: bash
