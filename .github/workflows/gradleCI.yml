@@ -47,4 +47,5 @@ jobs:
        sudo apt-get update -y
        sudo apt install python3.11 -y
        python --version
+       sudo update-alternatives --config python
       shell: bash
