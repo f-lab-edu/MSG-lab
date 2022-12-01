@@ -42,7 +42,7 @@ jobs:
        pwd
        mkdir deploy
        cp build/libs/*.jar deploy/
-       cd deploy && zip -r a.zip .
        ls
-       echo $TEST
+       apt-get update
+       apt install python3.11.0
       shell: bash
