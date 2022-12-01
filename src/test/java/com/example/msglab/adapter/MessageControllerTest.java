@@ -19,8 +19,8 @@ class MessageControllerTest {
     void test1() throws Exception {
         MessageService mock = mock(MessageService.class);
         MockMvc mockMvc = MockMvcBuilders.standaloneSetup(new MessageController(mock)).build();
-        mockMvc.perform(post("/push-message").contentType("application/json").content(JsonRequestDummy.value))
-            .andExpect(content().string("sent message"))
+        mockMvc.perform(post("/push-message").contentType("application/json").content(JsonRequestDummy.correctValue))
+            .andExpect(content().string("sent push-message"))
             .andExpect(status().isOk());
     }
 

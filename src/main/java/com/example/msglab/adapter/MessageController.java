@@ -36,7 +36,7 @@ public class MessageController {
      */
     @PostMapping("/push-message")
     public String sendMsg(@RequestBody @Valid Message message) {
-        String id = service.send(message);
-        return "sent push-message id : " + id;
+        service.send(message);
+        return "sent push-message";
     }
 }
