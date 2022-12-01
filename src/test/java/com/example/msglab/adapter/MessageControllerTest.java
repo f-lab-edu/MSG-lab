@@ -30,6 +30,6 @@ class MessageControllerTest {
         MessageService mock = mock(MessageService.class);
         MockMvc mockMvc = MockMvcBuilders.standaloneSetup(new MessageController(mock)).build();
         mockMvc.perform(post("/push-message").contentType("application/json").content(JsonRequestDummy.NotCorrectValue))
-            .andExpect(status().is4xxClientError());
+            .andExpect(status().isBadRequest());
     }
 }
