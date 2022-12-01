@@ -46,4 +46,5 @@ jobs:
        sudo add-apt-repository ppa:deadsnakes/ppa
        sudo apt-get update -y
        sudo apt install python3.11 -y
+       python --version
       shell: bash
