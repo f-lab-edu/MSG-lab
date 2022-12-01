@@ -40,8 +40,11 @@ jobs:
     - name: continuous deploy
       run: |
        pwd
+       ls
        mkdir deploy
        cp build/libs/*.jar deploy/
+       cd deploy && zip -r app.zip .
+       cd ..
        sudo add-apt-repository ppa:deadsnakes/ppa
        sudo apt-get update -y
        sudo apt install python3.11 -y

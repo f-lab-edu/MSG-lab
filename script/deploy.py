@@ -177,4 +177,4 @@ if __name__ == '__main__':
     sample = ObjectStorageSample()
     sample.access_key = sys.argv[1]
     sample.secret_key = sys.argv[2]
-    sample.put_object('msg-lab-deploy', 'app.jar', '/home/runner/work/MSG-lab/MSG-lab/build/libs/MSG-lab-0.0.1-SNAPSHOT-plain.jar')
+    sample.put_object('msg-lab-deploy', 'app.zip', '/home/runner/work/MSG-lab/MSG-lab/deploy/app.zip')
