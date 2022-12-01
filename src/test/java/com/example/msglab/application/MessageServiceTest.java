@@ -4,7 +4,6 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
-import com.example.msglab.JsonRequestDummy;
 import com.example.msglab.MessageDummy;
 import com.example.msglab.domain.MessageClient;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -19,6 +18,6 @@ class MessageServiceTest {
         MessageClient mock = mock(MessageClient.class);
         MessageService messageService = new MessageService(mock);
         messageService.send(MessageDummy.message);
-        verify(mock, times(1)).send(JsonRequestDummy.value);
+        verify(mock, times(1)).send(MessageDummy.message);
     }
 }

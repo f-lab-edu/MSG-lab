@@ -1,13 +1,17 @@
 package com.example.msglab.adapter;
 
 import com.example.msglab.adapter.config.ConfigFCM;
+import com.example.msglab.domain.Message;
 import com.example.msglab.domain.MessageClient;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import javax.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageConversionException;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
@@ -22,6 +26,7 @@ public class MessageClientFCM implements MessageClient {
     private HttpHeaders headers = new HttpHeaders();
 
     private final RestTemplate restTemplate = new RestTemplate();
+    private final ObjectMapper mapper = new ObjectMapper();
 
     @PostConstruct
     private void init() {
@@ -30,17 +35,28 @@ public class MessageClientFCM implements MessageClient {
     }
 
     @Override
-    public void send(String message) {
-        HttpEntity<String> request = createRequest(message);
+    public void send(Message message) {
+        String data = convertMessage2Json(message);
+        HttpEntity<String> request = createRequest(data);
         ResponseEntity<String> response = postRequest(request);
         // todo(hun) : post 요청이 실패하면 retry하는 로직 구현하기
     }
 
-    private ResponseEntity<String> postRequest(HttpEntity<String> request) {
-        return restTemplate.postForEntity(configFCM.getUrl(), request, String.class);
+    private String convertMessage2Json(Message message) {
+        String data = "";
+        try {
+            data = mapper.writeValueAsString(message);
+        } catch (JsonProcessingException e) {
+            throw new HttpMessageConversionException(e.getMessage());
+        }
+        return data;
     }
 
     private HttpEntity<String> createRequest(String message) {
         return new HttpEntity<>(message, headers);
+    }
+
+    private ResponseEntity<String> postRequest(HttpEntity<String> request) {
+        return restTemplate.postForEntity(configFCM.getUrl(), request, String.class);
     }
 }
