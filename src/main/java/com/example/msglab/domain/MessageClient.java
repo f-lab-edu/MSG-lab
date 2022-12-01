@@ -3,7 +3,7 @@ package com.example.msglab.domain;
 public interface MessageClient {
 
     /**
-     * @param message json 형태의 전송할 문자열
+     * @param message 전송할 메세지
      */
-    void send(String message);
+    void send(Message message);
 }
