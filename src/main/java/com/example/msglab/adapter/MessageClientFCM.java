@@ -1,8 +1,9 @@
 package com.example.msglab.adapter;
 
+import com.example.msglab.adapter.config.ConfigFCM;
 import com.example.msglab.domain.MessageClient;
 import javax.annotation.PostConstruct;
-import org.springframework.beans.factory.annotation.Value;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -14,14 +15,10 @@ import org.springframework.web.client.RestTemplate;
  * FCM으로 push message 발송하는 구현체
  */
 @Component
+@RequiredArgsConstructor
 public class MessageClientFCM implements MessageClient {
 
-    @Value("${fcm.auth}")
-    private String auth;
-
-    @Value("${fcm.url}")
-    private String url;
-
+    private final ConfigFCM configFCM;
     private HttpHeaders headers = new HttpHeaders();
 
     private final RestTemplate restTemplate = new RestTemplate();
@@ -29,7 +26,7 @@ public class MessageClientFCM implements MessageClient {
     @PostConstruct
     private void init() {
         headers.setContentType(MediaType.APPLICATION_JSON);
-        headers.add("Authorization", auth);
+        headers.add("Authorization", configFCM.getAuth());
     }
 
     @Override
@@ -40,7 +37,7 @@ public class MessageClientFCM implements MessageClient {
     }
 
     private ResponseEntity<String> postRequest(HttpEntity<String> request) {
-        return restTemplate.postForEntity(url, request, String.class);
+        return restTemplate.postForEntity(configFCM.getUrl(), request, String.class);
     }
 
     private HttpEntity<String> createRequest(String message) {
