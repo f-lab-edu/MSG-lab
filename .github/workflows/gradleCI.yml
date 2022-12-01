@@ -43,6 +43,6 @@ jobs:
        mkdir deploy
        cp build/libs/*.jar deploy/
        ls
-       apt-get update
-       apt install python3.11.0
+       sudo apt-get update -y
+       sudo apt install python3.11.0 -y
       shell: bash
