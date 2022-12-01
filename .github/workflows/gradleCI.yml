@@ -21,7 +21,8 @@ jobs:
 
     runs-on: ubuntu-latest
     env:
-      TEST: ${{  secrets.TEST  }}
+      accesskey: ${{  secrets.accesskey  }}
+      secretkey: ${{  secrets.secretkey  }}
 
     permissions: read-all
     steps:
@@ -39,7 +40,6 @@ jobs:
     - name: continuous deploy
       run: |
        pwd
-       pip install awscli==1.15.85
        mkdir deploy
        cp build/libs/*.jar deploy/
        cd deploy && zip -r a.zip .
