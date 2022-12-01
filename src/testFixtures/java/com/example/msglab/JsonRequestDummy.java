@@ -1,19 +1,8 @@
 package com.example.msglab;
 
 public class JsonRequestDummy {
-    public static String correctValue = "{\n"
-        + "  \"to\": \"/topics/news\",\n"
-        + "  \"notification\": {\n"
-        + "    \"title\": \"Breaking News\",\n"
-        + "    \"body\": \"asdad\"\n"
-        + "  }\n"
-        + "}";
 
-    public static String NotCorrectValue = "{\n"
-        + "  \"to\": \"/topics/news\",\n"
-        + "  \"notification\": {\n"
-        + "    \"title\": \"\",\n"
-        + "    \"body\": \"asdad\"\n"
-        + "  }\n"
-        + "}";
+    public static String correctValue = "{\"to\":\"/topics/news\",\"notification\":{\"title\":\"Breaking News\",\"body\":\"asdad\"}}";
+
+    public static String NotCorrectValue = "{\"to\": \"/topics/news\",\"notification\": {\"title\": \"\",\"body\": \"asdad\"}}";
 }

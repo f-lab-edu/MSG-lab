@@ -4,6 +4,12 @@ import com.example.msglab.application.MessageService;
 import com.example.msglab.domain.Message;
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageConversionException;
+import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.http.converter.HttpMessageNotWritableException;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,6 +23,10 @@ public class MessageController {
 
     private final MessageService service;
 
+    @ExceptionHandler({HttpMessageConversionException.class, HttpMessageNotReadableException.class, HttpMessageNotWritableException.class})
+    public ResponseEntity<String> handle(Exception exception) {
+        return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
+    }
 
     /**
      * push message를 전송합니다
@@ -27,6 +37,6 @@ public class MessageController {
     @PostMapping("/push-message")
     public String sendMsg(@RequestBody @Valid Message message) {
         String id = service.send(message);
-        return "sent push-message id : "+id;
+        return "sent push-message id : " + id;
     }
 }
