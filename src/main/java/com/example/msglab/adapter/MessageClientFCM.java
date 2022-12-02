@@ -39,7 +39,6 @@ public class MessageClientFCM implements MessageClient {
         String data = convertMessage2Json(message);
         HttpEntity<String> request = createRequest(data);
         ResponseEntity<String> response = postRequest(request);
-        // todo(hun) : post 요청이 실패하면 retry하는 로직 구현하기
     }
 
     private String convertMessage2Json(Message message) {
