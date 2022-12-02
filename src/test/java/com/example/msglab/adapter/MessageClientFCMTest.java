@@ -24,7 +24,7 @@ class MessageClientFCMTest {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.add("Authorization", config.getAuth());
-        HttpEntity<String> httpEntity = new HttpEntity<>(JsonRequestDummy.value, headers);
+        HttpEntity<String> httpEntity = new HttpEntity<>(JsonRequestDummy.correctValue, headers);
 
         MessageClientFCM messageClientFCM = new MessageClientFCM(config, webClinet);
         messageClientFCM.init();

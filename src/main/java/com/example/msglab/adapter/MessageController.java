@@ -27,9 +27,6 @@ public class MessageController {
     public ResponseEntity<String> handle(Exception exception) {
         return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
     }
-    @PostMapping("/send")
-    public String sendMsg(@RequestBody Message message) {
-        // todo(hun): service에서 응답을 리턴해야 할까요?
 
     /**
      * push message를 전송합니다
@@ -39,7 +36,8 @@ public class MessageController {
      */
     @PostMapping("/push-message")
     public String sendMsg(@RequestBody @Valid Message message) {
+        // todo(hun): service에서 응답을 리턴해야 할까요?
         service.send(message);
-        return "sent message";
+        return "sent push-message";
     }
 }
