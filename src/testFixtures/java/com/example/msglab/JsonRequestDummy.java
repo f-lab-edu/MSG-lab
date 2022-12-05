@@ -7,11 +7,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class JsonRequestDummy {
 
+    private static final ObjectMapper objectMapper = new ObjectMapper();
+
     public static final String correctValue = toJson(new Message("/topics/news", new Notification("Breaking News", "asdad")));
 
     public static final String NotCorrectValue = toJson(new Message("/topics/news", new Notification("", "asdad")));
-
-    private static final ObjectMapper objectMapper = new ObjectMapper();
 
     private static <T> String toJson(T obj) {
         try {
