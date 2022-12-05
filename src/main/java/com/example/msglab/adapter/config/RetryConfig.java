@@ -8,6 +8,7 @@ import org.springframework.retry.annotation.Backoff;
 import org.springframework.retry.annotation.EnableRetry;
 import org.springframework.retry.annotation.Recover;
 import org.springframework.retry.annotation.Retryable;
+import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
@@ -20,20 +21,18 @@ public class RetryConfig {
         clientHttpRequestFactory.setReadTimeout(2000);
         clientHttpRequestFactory.setConnectTimeout(500);
 
-        RestTemplate restTemplate = new RestTemplate(clientHttpRequestFactory) {
+        return new RestTemplate(clientHttpRequestFactory) {
             @Override
-            @Retryable(value = RestClientException.class, maxAttempts = 3, backoff = @Backoff(delay = 1000))
+            @Retryable(value = HttpServerErrorException.class, maxAttempts = 3, backoff = @Backoff(delay = 1000))
             public <T> ResponseEntity<T> postForEntity(String url, Object request,
-                Class<T> responseType, Object... uriVariables) throws RestClientException {
+                Class<T> responseType, Object... uriVariables) throws HttpServerErrorException {
                 return super.postForEntity(url, request, responseType, uriVariables);
             }
 
             @Recover
-            public <T> ResponseEntity<String> postForEntityRecover(RestClientException e) {
-                return ResponseEntity.badRequest().body("bad request");
+            public <T> ResponseEntity<String> postForEntityRecover(HttpServerErrorException e) {
+                return ResponseEntity.internalServerError().body("server error");
             }
         };
-
-        return restTemplate;
     }
 }
