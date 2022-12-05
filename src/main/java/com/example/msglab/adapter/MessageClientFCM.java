@@ -1,44 +1,62 @@
 package com.example.msglab.adapter;
 
+import com.example.msglab.adapter.config.ConfigFCM;
+import com.example.msglab.domain.Message;
 import com.example.msglab.domain.MessageClient;
-import com.example.msglab.domain.MessageURL;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import javax.annotation.PostConstruct;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageConversionException;
+import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 /**
  * FCM으로 push message 발송하는 구현체
  */
+@Component
+@RequiredArgsConstructor
 public class MessageClientFCM implements MessageClient {
 
-    // todo(hun) : auth키를 인터넷에 공개할 수 없습니다.
-    //  해결하기 위해 스프링의 프로필을 적용할 수 있을것 같습니다.
-    //  좋은 방법이 있으면 알려주세요.
-    private static final String auth = "";
-
-    private static HttpHeaders headers = new HttpHeaders();
-
-    static {
-        headers.setContentType(MediaType.APPLICATION_JSON);
-        headers.add("Authorization", auth);
-    }
+    private final ConfigFCM configFCM;
+    private HttpHeaders headers = new HttpHeaders();
 
     private final RestTemplate restTemplate = new RestTemplate();
+    private final ObjectMapper mapper = new ObjectMapper();
+
+    @PostConstruct
+    private void init() {
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.add("Authorization", configFCM.getAuth());
+    }
 
     @Override
-    public void send(String message) {
-        HttpEntity<String> request = createRequest(message);
+    public void send(Message message) {
+        String data = convertMessage2Json(message);
+        HttpEntity<String> request = createRequest(data);
         ResponseEntity<String> response = postRequest(request);
         // todo(hun) : post 요청이 실패하면 retry하는 로직 구현하기
     }
 
-    private ResponseEntity<String> postRequest(HttpEntity<String> request) {
-        return restTemplate.postForEntity(MessageURL.FCM.getUrl(), request, String.class);
+    private String convertMessage2Json(Message message) {
+        String data = "";
+        try {
+            data = mapper.writeValueAsString(message);
+        } catch (JsonProcessingException e) {
+            throw new HttpMessageConversionException(e.getMessage());
+        }
+        return data;
     }
 
     private HttpEntity<String> createRequest(String message) {
         return new HttpEntity<>(message, headers);
+    }
+
+    private ResponseEntity<String> postRequest(HttpEntity<String> request) {
+        return restTemplate.postForEntity(configFCM.getUrl(), request, String.class);
     }
 }
