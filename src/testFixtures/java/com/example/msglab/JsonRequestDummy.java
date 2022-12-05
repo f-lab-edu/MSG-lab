@@ -7,16 +7,15 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class JsonRequestDummy {
 
-    public static final String correctValue;
+    public static final String correctValue = toJson(new Message("/topics/news", new Notification("Breaking News", "asdad")));
 
-    public static final String NotCorrectValue;
+    public static final String NotCorrectValue = toJson(new Message("/topics/news", new Notification("", "asdad")));
 
-    static {
-        ObjectMapper objectMapper = new ObjectMapper();
+    private static final ObjectMapper objectMapper = new ObjectMapper();
+
+    private static <T> String toJson(T obj) {
         try {
-            correctValue = objectMapper.writeValueAsString(new Message("/topics/news", new Notification("Breaking News", "asdad")));
-            Message invalidMessage = new Message("/topics/news", new Notification("", "asdad"));
-            NotCorrectValue = objectMapper.writeValueAsString(invalidMessage);
+            return objectMapper.writeValueAsString(obj);
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
