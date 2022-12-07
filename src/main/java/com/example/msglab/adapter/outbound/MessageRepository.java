@@ -1,4 +1,4 @@
-package com.example.msglab.adapter;
+package com.example.msglab.adapter.outbound;
 
 import com.example.msglab.domain.Message;
 import org.springframework.data.jpa.repository.JpaRepository;

@@ -1,4 +1,4 @@
-package com.example.msglab.adapter;
+package com.example.msglab.adapter.inbound;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

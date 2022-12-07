@@ -5,7 +5,7 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 import com.example.msglab.MessageDummy;
-import com.example.msglab.adapter.MessageRepository;
+import com.example.msglab.adapter.outbound.MessageRepository;
 import com.example.msglab.domain.MessageClient;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

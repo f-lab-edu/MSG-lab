@@ -1,4 +1,4 @@
-package com.example.msglab.adapter;
+package com.example.msglab.adapter.inbound;
 
 import com.example.msglab.adapter.config.ConfigFCM;
 import com.example.msglab.domain.Message;

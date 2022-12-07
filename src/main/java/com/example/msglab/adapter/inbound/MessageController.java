@@ -1,4 +1,4 @@
-package com.example.msglab.adapter;
+package com.example.msglab.adapter.inbound;
 
 import com.example.msglab.application.MessageService;
 import com.example.msglab.domain.Message;
@@ -29,14 +29,15 @@ public class MessageController {
     }
 
     /**
-     * push message를 전송합니다
+     * 전송할 메세지 폼을 받아서 push-message 전송
      *
-     * @param message 전송할 메세지
-     * @return 전송 이후 리턴하는 문자열
+     * @param messageRequestV1 전송할 메세지
+     * @return 저장된 메세지
      */
     @PostMapping("/push-message")
-    public String sendMsg(@RequestBody @Valid Message message) {
-        service.send(message);
-        return "sent push-message";
+    public String sendPushMessage(@RequestBody @Valid MessageRequestV1 messageRequestV1) {
+        Message message = messageRequestV1.toMessage();
+        Message send = service.send(message);
+        return MessageResponseV1.toJson(send);
     }
 }
