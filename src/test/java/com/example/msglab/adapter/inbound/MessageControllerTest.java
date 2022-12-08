@@ -1,4 +1,4 @@
-package com.example.msglab.adapter;
+package com.example.msglab.adapter.inbound;
 
 import static org.mockito.Mockito.mock;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -6,7 +6,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import com.example.msglab.JsonRequestDummy;
-import com.example.msglab.adapter.inbound.MessageController;
 import com.example.msglab.application.MessageService;
 
 import org.junit.jupiter.api.DisplayName;

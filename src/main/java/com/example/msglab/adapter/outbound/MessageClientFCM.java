@@ -1,4 +1,4 @@
-package com.example.msglab.adapter.inbound;
+package com.example.msglab.adapter.outbound;
 
 import com.example.msglab.adapter.config.ConfigFCM;
 import com.example.msglab.domain.Message;
@@ -37,15 +37,16 @@ public class MessageClientFCM implements MessageClient {
 
     @Override
     public void send(Message message) {
-        String data = convertMessage2Json(message);
+        MessageRequestFcmV1 messageRequestFCM = MessageRequestFcmV1.toMessageRequestFcm(message);
+        String data = convertMessage2Json(messageRequestFCM);
         HttpEntity<String> request = createRequest(data);
         ResponseEntity<String> response = postRequest(request);
     }
 
-    private String convertMessage2Json(Message message) {
+    private String convertMessage2Json(MessageRequestFcmV1 messageRequestFCM) {
         String data = "";
         try {
-            data = mapper.writeValueAsString(message);
+            data = mapper.writeValueAsString(messageRequestFCM);
         } catch (JsonProcessingException e) {
             throw new HttpMessageConversionException(e.getMessage());
         }
