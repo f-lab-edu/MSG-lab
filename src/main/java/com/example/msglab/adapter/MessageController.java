@@ -36,6 +36,7 @@ public class MessageController {
      */
     @PostMapping("/push-message")
     public String sendMsg(@RequestBody @Valid Message message) {
+        // todo(hun): service에서 응답을 리턴해야 할까요?
         service.send(message);
         return "sent push-message";
     }
