@@ -39,6 +39,8 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-aop'
 
     implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+    testFixturesImplementation 'com.fasterxml.jackson.core:jackson-databind'
 }
 
 tasks.named('test') {
