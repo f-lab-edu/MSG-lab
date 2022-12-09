@@ -37,7 +37,7 @@ public class MessageClientFCM implements MessageClient {
 
     @Override
     public void send(Message message) {
-        MessageRequestFcmV1 messageRequestFCM = MessageRequestFcmV1.toMessageRequestFcm(message);
+        MessageRequestFcmV1 messageRequestFCM = MessageRequestFcmV1.from(message);
         String data = convertMessage2Json(messageRequestFCM);
         HttpEntity<String> request = createRequest(data);
         ResponseEntity<String> response = postRequest(request);

@@ -1,7 +1,5 @@
 package com.example.msglab.adapter.inbound;
 
-import java.util.Map;
-
 import javax.validation.constraints.NotEmpty;
 
 import com.example.msglab.domain.Message;
@@ -27,9 +25,9 @@ public class MessageRequestV1 {
     private String notificationBody;
 
     @JsonProperty("notification")
-    private void unpackNameFromNestedObject(Map<String, String> notification) {
-        notificationTitle = notification.get("title");
-        notificationBody = notification.get("body");
+    private void unpackNameFromNestedObject(Notification notification) {
+        notificationTitle = notification.getTitle();
+        notificationBody = notification.getBody();
     }
 
     public Message toMessage() {

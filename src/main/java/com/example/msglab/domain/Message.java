@@ -1,10 +1,13 @@
 package com.example.msglab.domain;
 
-import java.util.UUID;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.validation.Valid;
+
+import org.hibernate.annotations.GenericGenerator;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -16,7 +19,9 @@ import lombok.NoArgsConstructor;
 @Entity
 public class Message {
     @Id
-    private final String id = UUID.randomUUID().toString();
+    @GeneratedValue(generator = "uuid")
+    @GenericGenerator(name = "uuid", strategy = "uuid2")
+    private String id;
     @Column(name = "topic")
     private String to;
     @Valid

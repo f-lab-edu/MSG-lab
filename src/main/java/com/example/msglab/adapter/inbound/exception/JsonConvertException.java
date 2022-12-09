@@ -1,14 +1,14 @@
-package com.example.msglab.adapter.inbound;
+package com.example.msglab.adapter.inbound.exception;
 
 import org.springframework.http.HttpStatus;
 
-import com.example.msglab.adapter.inbound.Constant.ExceptionClass;
+import com.example.msglab.adapter.inbound.exception.Constant.ExceptionClass;
 
-public class ConvertException extends RuntimeException {
+public class JsonConvertException extends RuntimeException {
     private final Constant.ExceptionClass exceptionClass;
     private final HttpStatus httpStatus;
 
-    public ConvertException(Constant.ExceptionClass exceptionClass, HttpStatus httpStatus, String message) {
+    public JsonConvertException(Constant.ExceptionClass exceptionClass, HttpStatus httpStatus, String message) {
         super(exceptionClass.toString() + message);
         this.exceptionClass = exceptionClass;
         this.httpStatus = httpStatus;

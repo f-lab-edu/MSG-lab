@@ -1,4 +1,4 @@
-package com.example.msglab.adapter.inbound;
+package com.example.msglab.adapter.inbound.exception;
 
 public class Constant {
     public enum ExceptionClass {

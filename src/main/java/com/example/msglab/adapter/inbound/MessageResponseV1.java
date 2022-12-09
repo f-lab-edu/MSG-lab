@@ -1,14 +1,9 @@
 package com.example.msglab.adapter.inbound;
 
-import org.springframework.http.HttpStatus;
-
-import com.example.msglab.adapter.inbound.Constant.ExceptionClass;
-import com.example.msglab.domain.Message;
 import com.example.msglab.domain.Notification;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 /**
@@ -17,18 +12,9 @@ import lombok.NoArgsConstructor;
  */
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
 public class MessageResponseV1 {
     private String id;
     private String to;
     private Notification notification;
-
-    public static String toJson(Message message) {
-        ObjectMapper objectMapper = new ObjectMapper();
-        try {
-            return objectMapper.writeValueAsString(message);
-        } catch (JsonProcessingException e) {
-            throw new ConvertException(ExceptionClass.PUSH, HttpStatus.BAD_REQUEST,
-                                       "can't convert message to json");
-        }
-    }
 }

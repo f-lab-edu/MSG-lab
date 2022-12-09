@@ -23,7 +23,7 @@ public class MessageRequestFcmV1 {
      * @param message 전송하고 싶은 메세지
      * @return FCM api 버전1에 맞게 변환
      */
-    public static MessageRequestFcmV1 toMessageRequestFcm(Message message) {
+    public static MessageRequestFcmV1 from(Message message) {
         return new MessageRequestFcmV1(message.getTo(), new Notification(message.getNotification().getTitle(), message.getNotification().getBody()));
     }
 
