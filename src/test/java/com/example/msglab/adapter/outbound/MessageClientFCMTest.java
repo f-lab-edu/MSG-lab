@@ -1,5 +1,7 @@
 package com.example.msglab.adapter.outbound;
 
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -10,6 +12,7 @@ import com.example.msglab.adapter.config.ConfigFCM;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -22,6 +25,7 @@ class MessageClientFCMTest {
     void test1() {
         ConfigFCM config = mock(ConfigFCM.class);
         RestTemplate restTemplate = mock(RestTemplate.class);
+        Mockito.when(config.getUrl()).thenReturn("aaa.com");
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
@@ -32,6 +36,6 @@ class MessageClientFCMTest {
         messageClientFCM.init();
 
         messageClientFCM.send(MessageDummy.message);
-        verify(restTemplate, times(1)).postForEntity(config.getUrl(), httpEntity, String.class);
+        verify(restTemplate, times(1)).postForEntity(anyString(), any(), any());
     }
 }
