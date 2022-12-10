@@ -1,17 +1,17 @@
-package com.example.msglab.adapter;
+package com.example.msglab.adapter.outbound;
 
 import com.example.msglab.adapter.config.ConfigFCM;
 import com.example.msglab.domain.Message;
 import com.example.msglab.domain.MessageClient;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+
 import javax.annotation.PostConstruct;
+
 import lombok.RequiredArgsConstructor;
+
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.converter.HttpMessageConversionException;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
@@ -23,33 +23,23 @@ import org.springframework.web.client.RestTemplate;
 public class MessageClientFCM implements MessageClient {
 
     private final ConfigFCM configFCM;
+
     private HttpHeaders headers = new HttpHeaders();
 
-    private final RestTemplate restTemplate = new RestTemplate();
-    private final ObjectMapper mapper = new ObjectMapper();
+    private final RestTemplate restTemplate;
 
     @PostConstruct
-    private void init() {
+    final void init() {
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.add("Authorization", configFCM.getAuth());
     }
 
     @Override
     public void send(Message message) {
-        String data = convertMessage2Json(message);
+        MessageRequestFcmV1 messageRequestFCM = MessageRequestFcmV1.from(message);
+        String data = messageRequestFCM.toJson();
         HttpEntity<String> request = createRequest(data);
         ResponseEntity<String> response = postRequest(request);
-        // todo(hun) : post 요청이 실패하면 retry하는 로직 구현하기
-    }
-
-    private String convertMessage2Json(Message message) {
-        String data = "";
-        try {
-            data = mapper.writeValueAsString(message);
-        } catch (JsonProcessingException e) {
-            throw new HttpMessageConversionException(e.getMessage());
-        }
-        return data;
     }
 
     private HttpEntity<String> createRequest(String message) {
