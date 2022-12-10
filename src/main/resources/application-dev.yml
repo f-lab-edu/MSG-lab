@@ -8,6 +8,11 @@ spring:
     url: jdbc:h2:~/test  # H2 접속 정보
     username: sa  # H2 접속 시 입력할 username 정보 (원하는 것으로 입력)
     password:  # H2 접속 시 입력할 password 정보 (원하는 것으로 입력)
+  jpa:
+    generate-ddl: true
+    hibernate:
+      ddl-auto: create
+
 fcm:
   auth: authkey
   url: https://fcm.googleapis.com/fcm/send
