@@ -1,6 +1,6 @@
 # MSG-lab 📬
 
-### 우리는 이런걸 만들었어요
+## 우리는 이런걸 만들었어요
 
 - 언제나 원하는 주제로 전송 가능한 알림 메세지 기능! ✉️
 - 클라우드 인프라를 통한 유연하고 안전한 서비스! ⛅️
@@ -21,7 +21,7 @@
 
 <img alt="grafana 모니터링 화면" src="https://user-images.githubusercontent.com/46879264/207805584-0aef9e36-72bb-4d65-af64-b8de9196f4e5.png" width=900 height=500/>
 
-### 사용한 기술
+## 사용한 기술
 
 <img src="https://img.shields.io/badge/Java-007396?style=flat-square&logo=java&logoColor=white"/>
 
@@ -35,4 +35,10 @@
 
 <img src="https://img.shields.io/badge/-Naver--Cloud-green">
 
-### 더 자세한 내용은 위키에서 확인하세요! [링크](https://github.com/f-lab-edu/MSG-lab/wiki)
+## 주요 내용
+
+### - API 사용 가이드, [링크](https://github.com/f-lab-edu/MSG-lab/wiki/API)
+### - 인프라 구성, [링크](https://github.com/f-lab-edu/MSG-lab/wiki/%EC%9D%B8%ED%94%84%EB%9D%BC-%EA%B5%AC%EC%84%B1)
+### - 그밖의 작업 내용, [링크](https://github.com/f-lab-edu/MSG-lab/wiki/%EC%9E%91%EC%97%85-%EB%82%B4%EC%9A%A9) 
+
+## 더 자세한 내용은 위키에서 확인하세요! [링크](https://github.com/f-lab-edu/MSG-lab/wiki)
