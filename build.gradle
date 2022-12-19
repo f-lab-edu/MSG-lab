@@ -45,6 +45,8 @@ dependencies {
     implementation 'com.mysql:mysql-connector-j:8.0.31'
 
     testFixturesImplementation 'com.fasterxml.jackson.core:jackson-databind'
+
+    runtimeOnly 'io.micrometer:micrometer-registry-prometheus'
 }
 
 tasks.named('test') {

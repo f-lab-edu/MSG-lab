@@ -12,6 +12,7 @@ spring:
     generate-ddl: true
     hibernate:
       ddl-auto: create
+    show-sql: true
 
 fcm:
   auth: authkey
