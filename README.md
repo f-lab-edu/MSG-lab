@@ -25,6 +25,10 @@
 
 <img alt="msg-lab  pinpoint 화면" src="https://user-images.githubusercontent.com/46879264/209425804-86a55369-7cde-46f4-b46f-347d2ab55d7c.png" width="700" height="450">
 
+### 백엔드 아키텍처
+
+<img src="https://user-images.githubusercontent.com/46879264/209621781-eb785bb8-25b6-4b12-8bd1-073fe4835153.jpg" width="700" height="450">
+
 ## 사용한 기술
 
 <img src="https://spring.io/images/projects/spring-boot-7f2e24fb962501672cc91ccd285ed2ba.svg" width="200" height="200">
