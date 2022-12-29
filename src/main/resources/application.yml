@@ -1,8 +1,24 @@
 spring:
   profiles:
     active: real
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: create
 management:
   endpoints:
     web:
       exposure:
         include: health, info, metrics, prometheus
+  server:
+    port: 8081
+server:
+  tomcat:
+    connection-timeout: 6000
+    threads:
+      max: 100
+      min-spare: 40
+    accept-count: 3
+    max-connections: 300
+    mbeanregistry:
+      enabled: true
