@@ -1,6 +1,6 @@
 package com.example.msglab.application;
 
-import com.example.msglab.adapter.config.RabbitProperty;
+import com.example.msglab.adapter.config.RabbitProperty.Constants;
 import com.example.msglab.domain.Message;
 import com.example.msglab.domain.MessageClient;
 import lombok.RequiredArgsConstructor;
@@ -26,6 +26,6 @@ public class MessageService {
      */
     public void send(final Message message) {
         messageClient.send(message);
-        rabbitTemplate.convertAndSend(RabbitProperty.EXCHANGE_NAME.getValue(), RabbitProperty.ROUTING_KEY.getValue(), message);
+        rabbitTemplate.convertAndSend(Constants.EXCHANGE_NAME, Constants.ROUTING_KEY, message);
     }
 }
