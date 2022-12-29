@@ -19,7 +19,7 @@
 
 ### 안정적인 운영을 위한 모니터링 시스템 📈
 
-<img alt="msg-lab  그라파나 모니터링 화면" src="https://user-images.githubusercontent.com/46879264/209425543-f1ebdf54-1e2f-4ab6-9df1-8614e7f62874.png" width="700" height="450">
+<img alt="msg-lab  그라파나 모니터링 화면" src="https://user-images.githubusercontent.com/46879264/209894757-84688ae7-b15a-4adc-82ea-92bd89e778b4.png" width="700" height="1200">
 
 ### 성능 추적을 위한 APM 🔎
 
