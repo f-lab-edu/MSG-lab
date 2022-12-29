@@ -1,3 +1,8 @@
 spring:
   profiles:
     active: dev
+  rabbitmq:
+    host: # 호스트 주소
+    port: # 호스트 포트
+    username: # 유저네임
+    password: # 유저암호
