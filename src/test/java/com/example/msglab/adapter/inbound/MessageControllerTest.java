@@ -23,7 +23,6 @@ class MessageControllerTest {
     @Test
     @DisplayName("POST /push-message가 요청되면 MessageController에서 올바른 응답을 내려주는지 테스트")
     void test1() throws Exception {
-        Mockito.when(mockService.send(any())).thenReturn(MessageDummy.message);
         mockMvc.perform(post("/push-message").contentType("application/json")
                                              .content(JsonRequestDummy.correctValue))
                .andExpect(status().isOk());
