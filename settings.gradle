@@ -1,1 +1,3 @@
 rootProject.name = 'MSG-lab'
+
+include 'RabbitMQ-worker'
