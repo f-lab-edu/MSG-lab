@@ -6,12 +6,5 @@ spring:
     port: # 호스트 포트번호
     username: # 유저네임
     password: # 유저 패스워드
-  datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://{host}:{port}/{database}
-    username:
-    password:
-  jpa:
-    open-in-view: false
-    hibernate:
-      ddl-auto: validate
+  profiles:
+    active: dev

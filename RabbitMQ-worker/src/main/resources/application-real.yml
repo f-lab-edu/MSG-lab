@@ -1,0 +1,10 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://{host}:{port}/{database}
+    username:
+    password:
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
