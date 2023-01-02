@@ -1,6 +1,6 @@
-package com.example.msglab.domain;
+package com.example.rabbitmqworker.domain;
 
-import javax.validation.constraints.NotEmpty;
+import jakarta.persistence.Embeddable;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -8,8 +8,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
+@Embeddable
 public class Notification {
-    @NotEmpty
     private String title;
     private String body;
 }

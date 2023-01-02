@@ -1,6 +1,6 @@
-package com.example.msglab.adapter.outbound;
+package com.example.rabbitmqworker.adapter.outbound;
 
-import com.example.msglab.domain.Message;
+import com.example.rabbitmqworker.domain.Message;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

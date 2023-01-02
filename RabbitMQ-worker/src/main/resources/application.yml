@@ -1,0 +1,19 @@
+server:
+  port: 8089
+spring:
+  rabbitmq:
+    host: # 호스트 주소
+    port: # 호스트 포트
+    username: # 유저네임
+    password: # 유저암호
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: # H2 접속 정보
+    username: # H2 접속 시 입력할 username 정보 (원하는 것으로 입력)
+    password: # H2 접속 시 입력할 password 정보 (원하는 것으로 입력)
+    hikari:
+      maximum-pool-size: 10
+  jpa:
+    generate-ddl: true
+    hibernate:
+      ddl-auto: create
