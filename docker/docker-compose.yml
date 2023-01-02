@@ -1,0 +1,13 @@
+version: "3.7"
+services:
+  prometheus:
+    build: .
+    ports: 
+      - "9090:9090"
+    tty: true
+  grafana:
+    image: grafana/grafana:6.6.2
+    ports:
+      - 9900:3000
+    depends_on:
+      - prometheus
