@@ -36,7 +36,7 @@ jobs:
         distribution: 'temurin'
     - name: Remove gradle cache
       run: | 
-       rm -r $HOME/.gradle/caches/
+       rm -r $HOME/.gradle/caches
       shell: bash
     - name: Clean and Build with Gradle no cache
       uses: gradle/gradle-build-action@67421db6bd0bf253fb4bd25b31ebb98943c375e1
