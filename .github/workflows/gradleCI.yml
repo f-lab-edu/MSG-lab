@@ -37,9 +37,13 @@ jobs:
     - name: Remove gradle cache
       run: | 
        rm -rf /home/runner/.gradle/caches/
-       ./gradlew clean
-       ./gradlew test
-       ./gradlew build
+       rm -rf /home/runner/.gradle/wrapper/
+      shell: bash
+    - name: Run gradle
+      run: |
+        ./gradlew clean
+        ./gradlew test
+        ./gradlew build
       shell: bash
     - name: continuous deploy
       run: |
