@@ -35,7 +35,8 @@ jobs:
         java-version: '11'
         distribution: 'temurin'
     - name: Remove gradle cache
-      run: | 
+      run: |
+       ./gradlew --stop
        rm -rf /home/runner/.gradle/caches/
        rm -rf /home/runner/.gradle/wrapper/
       shell: bash
@@ -43,7 +44,7 @@ jobs:
       run: |
         ./gradlew clean
         ./gradlew test
-        ./gradlew build
+        ./gradlew build --no-build-cache
       shell: bash
     - name: continuous deploy
       run: |
