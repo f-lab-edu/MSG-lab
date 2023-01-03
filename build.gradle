@@ -42,7 +42,7 @@ dependencies {
 
     testFixturesImplementation 'com.fasterxml.jackson.core:jackson-databind'
 
-    implementation 'org.springframework.amqp:spring-rabbit:3.0.0'
+    implementation 'org.springframework.amqp:spring-rabbit'
 }
 
 tasks.named('test') {
