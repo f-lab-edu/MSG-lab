@@ -23,6 +23,7 @@ jobs:
     env:
       accesskey: ${{  secrets.accesskey  }}
       secretkey: ${{  secrets.secretkey  }}
+      GRADLE_BUILD_ACTION_CACHE_DEBUG_ENABLED: true
 
     permissions: read-all
     steps:
@@ -40,6 +41,7 @@ jobs:
         cache-disabled: true
         cache-read-only: false
         gradle-home-cache-cleanup: true
+        gradle-home-cache-includes: none
     - name: continuous deploy
       run: |
        pwd
