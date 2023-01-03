@@ -34,12 +34,12 @@ jobs:
       with:
         java-version: '11'
         distribution: 'temurin'
-    - name: Clean and Build with Gradle no cache
-      uses: gradle/gradle-build-action@67421db6bd0bf253fb4bd25b31ebb98943c375e1
-      with:
-        arguments: clean build --no-build-cache
-        cache-disabled: true
-        cache-read-only: false
+    - name: Remove gradle cache
+      run: | 
+       ./gradlew clean
+       ./gradlew build
+       ./gradlew build
+      shell: bash
     - name: continuous deploy
       run: |
        pwd
