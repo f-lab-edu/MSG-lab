@@ -38,6 +38,8 @@ jobs:
       with:
         arguments: build
         cache-disabled: true
+        cache-read-only: false
+        gradle-home-cache-cleanup: true
     - name: continuous deploy
       run: |
        pwd
