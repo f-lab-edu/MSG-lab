@@ -6,18 +6,16 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import com.example.msglab.JsonRequestDummy;
-import com.example.msglab.MessageDummy;
-import com.example.msglab.application.MessageService;
+import com.example.msglab.application.PostMessageService;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 class MessageControllerTest {
 
-    private MessageService mockService = mock(MessageService.class);
+    private PostMessageService mockService = mock(PostMessageService.class);
     private MockMvc mockMvc = MockMvcBuilders.standaloneSetup(new MessageController(mockService)).build();
 
     @Test

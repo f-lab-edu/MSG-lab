@@ -17,7 +17,7 @@ class MessageServiceTest {
     void test1() {
         MessageClient messageClient = mock(MessageClient.class);
         RabbitTemplate rabbitTemplate = mock(RabbitTemplate.class);
-        MessageService messageService = new MessageService(messageClient, rabbitTemplate);
+        PostMessageService messageService = new PostMessageService(messageClient, rabbitTemplate);
         messageService.send(MessageDummy.message);
         verify(messageClient, times(1)).send(MessageDummy.message);
     }

@@ -10,9 +10,9 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class MessageService {
+public class PostMessageService {
 
-    private final Logger logger = LoggerFactory.getLogger(MessageService.class);
+    private final Logger logger = LoggerFactory.getLogger(PostMessageService.class);
     private final MessageClient messageClient;
 
     private final MessageBrokerClient messageBrokerClient;

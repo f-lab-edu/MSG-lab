@@ -1,6 +1,6 @@
 package com.example.msglab.adapter.inbound;
 
-import com.example.msglab.application.MessageService;
+import com.example.msglab.application.PostMessageService;
 import com.example.msglab.domain.Message;
 
 import javax.validation.Valid;
@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class MessageController {
 
-    private final MessageService service;
+    private final PostMessageService service;
 
     /**
      * 전송할 메세지 폼을 받아서 push-message 전송
