@@ -36,7 +36,7 @@ jobs:
         distribution: 'temurin'
     - name: Remove gradle cache
       run: | 
-       rm -rf /home/runner/.gradle/caches
+       rm -rf /home/runner/.gradle/caches/
        ./gradlew clean
        ./gradlew test
        ./gradlew build
