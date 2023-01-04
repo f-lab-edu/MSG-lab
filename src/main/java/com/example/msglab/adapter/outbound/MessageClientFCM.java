@@ -6,8 +6,12 @@ import com.example.msglab.domain.MessageClient;
 
 import javax.annotation.PostConstruct;
 
+import io.micrometer.core.annotation.Timed;
+import io.micrometer.core.instrument.MeterRegistry;
+import io.micrometer.core.instrument.Timer;
 import lombok.RequiredArgsConstructor;
 
+import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -26,7 +30,11 @@ public class MessageClientFCM implements MessageClient {
 
     private HttpHeaders headers = new HttpHeaders();
 
-    private final RestTemplate restTemplate;
+    private final RestTemplateBuilder builder;
+
+    private final MeterRegistry meterRegistry;
+
+    private final Timer timer;
 
     @PostConstruct
     final void init() {
@@ -46,7 +54,9 @@ public class MessageClientFCM implements MessageClient {
         return new HttpEntity<>(message, headers);
     }
 
+    @Timed(histogram = true)
     private ResponseEntity<String> postRequest(HttpEntity<String> request) {
-        return restTemplate.postForEntity(configFCM.getUrl(), request, String.class);
+        final RestTemplate restTemplate = builder.build();
+        return timer.record(() -> restTemplate.postForEntity(configFCM.getUrl(), request, String.class));
     }
 }
