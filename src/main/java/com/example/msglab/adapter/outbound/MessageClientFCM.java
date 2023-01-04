@@ -2,7 +2,7 @@ package com.example.msglab.adapter.outbound;
 
 import com.example.msglab.adapter.config.ConfigFCM;
 import com.example.msglab.domain.Message;
-import com.example.msglab.domain.MessageClient;
+import com.example.msglab.application.outbound.MessageClient;
 
 import javax.annotation.PostConstruct;
 

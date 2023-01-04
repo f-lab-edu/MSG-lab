@@ -12,12 +12,4 @@ public enum RabbitProperty {
     RabbitProperty(String value) {
         this.value = value;
     }
-    public static final class Constants {
-        public static final String EXCHANGE_NAME = "simple.news";
-        public static final String QUEUE_NAME = "simple.news";
-        public static final String ROUTING_KEY = "simple.news.#";
-
-        private Constants() {
-        }
-    }
 }

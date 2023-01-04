@@ -1,4 +1,6 @@
-package com.example.msglab.domain;
+package com.example.msglab.application.outbound;
+
+import com.example.msglab.domain.Message;
 
 public interface MessageClient {
 
