@@ -1,10 +1,5 @@
 #default
 spring:
-  jpa:
-    open-in-view: false
-    generate-ddl: false
-    hibernate:
-      ddl-auto: validate
   profiles:
     group:
       "develop": "dev"
@@ -36,11 +31,6 @@ spring:
     port: # 호스트 포트
     username: # 유저네임
     password: # 유저암호
-  datasource:
-    driver-class-name: # 데이터베이스 드라이버 설정
-    url: # 데이터베이스 접속 정보
-    username: # 데이터베이스 접속 시 입력할 username 정보
-    password: # 데이터베이스 접속 시 입력할 password 정보
 fcm:
   auth: # fcm authkey 입력
   url: https://fcm.googleapis.com/fcm/send
