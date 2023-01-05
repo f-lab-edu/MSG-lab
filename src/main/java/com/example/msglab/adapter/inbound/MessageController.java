@@ -1,6 +1,6 @@
 package com.example.msglab.adapter.inbound;
 
-import com.example.msglab.application.MessageService;
+import com.example.msglab.application.PostMessageService;
 import com.example.msglab.domain.Message;
 
 import javax.validation.Valid;
@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class MessageController {
 
-    private final MessageService service;
+    private final PostMessageService service;
 
     /**
      * 전송할 메세지 폼을 받아서 push-message 전송
@@ -29,7 +29,7 @@ public class MessageController {
     @PostMapping("/push-message")
     public MessageResponseV1 sendPushMessage(@RequestBody @Valid MessageRequestV1 messageRequestV1) {
         Message message = messageRequestV1.toMessage();
-        Message send = service.send(message);
-        return new MessageResponseV1(send.getId(), send.getTo(), send.getNotification());
+        service.send(message);
+        return new MessageResponseV1(message.getId(), message.getTo(), message.getNotification());
     }
 }
