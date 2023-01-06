@@ -1,10 +1,13 @@
+#default
 spring:
-  profiles:
-    active: real
   jpa:
     open-in-view: false
+    generate-ddl: false
     hibernate:
-      ddl-auto: create
+      ddl-auto: validate
+  profiles:
+    group:
+      "develop": "dev"
 management:
   metrics:
     distribution:
@@ -20,9 +23,29 @@ server:
   tomcat:
     connection-timeout: 6000
     threads:
-      max: 100
+      max: 500
       min-spare: 40
     accept-count: 3
     max-connections: 300
     mbeanregistry:
       enabled: true
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: "dev"
+  rabbitmq:
+    host: # 호스트 주소
+    port: # 호스트 포트
+    username: # 유저네임
+    password: # 유저암호
+  datasource:
+    driver-class-name: # 데이터베이스 드라이버 설정
+    url: # 데이터베이스 접속 정보
+    username: # 데이터베이스 접속 시 입력할 username 정보
+    password: # 데이터베이스 접속 시 입력할 password 정보
+fcm:
+  auth: # fcm authkey 입력
+  url: https://fcm.googleapis.com/fcm/send

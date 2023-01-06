@@ -23,6 +23,7 @@ jobs:
     env:
       accesskey: ${{  secrets.accesskey  }}
       secretkey: ${{  secrets.secretkey  }}
+      GRADLE_BUILD_ACTION_CACHE_DEBUG_ENABLED: true
 
     permissions: read-all
     steps:
@@ -33,10 +34,18 @@ jobs:
       with:
         java-version: '11'
         distribution: 'temurin'
-    - name: Build with Gradle
-      uses: gradle/gradle-build-action@67421db6bd0bf253fb4bd25b31ebb98943c375e1
-      with:
-        arguments: build
+    - name: Remove gradle cache
+      run: |
+       ./gradlew --stop
+       rm -rf /home/runner/.gradle/caches/
+       rm -rf /home/runner/.gradle/wrapper/
+      shell: bash
+    - name: Run gradle
+      run: |
+        ./gradlew clean
+        ./gradlew test
+        ./gradlew build --no-build-cache
+      shell: bash
     - name: continuous deploy
       run: |
        pwd

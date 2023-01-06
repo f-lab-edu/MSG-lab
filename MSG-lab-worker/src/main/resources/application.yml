@@ -1,0 +1,10 @@
+server:
+  port: 8089
+spring:
+  rabbitmq:
+    host: # 호스트 주소
+    port: # 호스트 포트번호
+    username: # 유저네임
+    password: # 유저 패스워드
+  profiles:
+    active: dev
