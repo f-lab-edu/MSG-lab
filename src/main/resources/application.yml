@@ -6,6 +6,10 @@ spring:
     hibernate:
       ddl-auto: create
 management:
+  metrics:
+    distribution:
+      percentiles:
+        http: 0.95, 0.9, 0.7, 0.5, 0.3
   endpoints:
     web:
       exposure:

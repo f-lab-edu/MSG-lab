@@ -28,8 +28,8 @@ public class MessageController {
      */
     @PostMapping("/push-message")
     public MessageResponseV1 sendPushMessage(@RequestBody @Valid MessageRequestV1 messageRequestV1) {
-        Message message = messageRequestV1.toMessage();
-        Message send = service.send(message);
+        final Message message = messageRequestV1.toMessage();
+        final Message send = service.send(message);
         return new MessageResponseV1(send.getId(), send.getTo(), send.getNotification());
     }
 }
