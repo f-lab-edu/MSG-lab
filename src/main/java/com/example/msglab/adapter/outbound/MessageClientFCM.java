@@ -6,8 +6,10 @@ import com.example.msglab.application.outbound.MessageClient;
 
 import javax.annotation.PostConstruct;
 
+import io.micrometer.core.annotation.Timed;
 import lombok.RequiredArgsConstructor;
 
+import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -24,9 +26,9 @@ public class MessageClientFCM implements MessageClient {
 
     private final ConfigFCM configFCM;
 
-    private HttpHeaders headers = new HttpHeaders();
+    private final HttpHeaders headers = new HttpHeaders();
 
-    private final RestTemplate restTemplate;
+    private final RestTemplateBuilder builder;
 
     @PostConstruct
     final void init() {
@@ -36,9 +38,9 @@ public class MessageClientFCM implements MessageClient {
 
     @Override
     public void send(Message message) {
-        MessageRequestFcmV1 messageRequestFCM = MessageRequestFcmV1.from(message);
-        String data = messageRequestFCM.toJson();
-        HttpEntity<String> request = createRequest(data);
+        final MessageRequestFcmV1 messageRequestFCM = MessageRequestFcmV1.from(message);
+        final String data = messageRequestFCM.toJson();
+        final HttpEntity<String> request = createRequest(data);
         ResponseEntity<String> response = postRequest(request);
     }
 
@@ -46,7 +48,9 @@ public class MessageClientFCM implements MessageClient {
         return new HttpEntity<>(message, headers);
     }
 
+    @Timed(histogram = true)
     private ResponseEntity<String> postRequest(HttpEntity<String> request) {
+        final RestTemplate restTemplate = builder.build();
         return restTemplate.postForEntity(configFCM.getUrl(), request, String.class);
     }
 }
