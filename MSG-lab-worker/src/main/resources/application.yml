@@ -8,8 +8,6 @@ spring:
   jpa:
     open-in-view: false
     generate-ddl: false
-    hibernate:
-      ddl-auto: validate
   profiles:
     group:
       "develop": "dev"
