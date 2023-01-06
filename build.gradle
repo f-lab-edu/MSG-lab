@@ -1,8 +1,5 @@
 plugins {
     id 'java'
-    id 'org.springframework.boot' version '2.7.5'
-    id 'io.spring.dependency-management' version '1.0.15.RELEASE'
-    id 'java-test-fixtures'
 }
 
 group = 'com.example'
@@ -20,29 +17,7 @@ repositories {
 }
 
 dependencies {
-    // sort by type, impl, compile, test
-    implementation 'org.springframework.boot:spring-boot-starter-web'
 
-    compileOnly 'org.projectlombok:lombok'
-    annotationProcessor 'org.projectlombok:lombok'
-
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
-
-    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
-
-    implementation 'org.springframework.retry:spring-retry'
-
-    implementation 'org.springframework.boot:spring-boot-starter-aop'
-
-    implementation 'org.springframework.boot:spring-boot-starter-validation'
-
-    implementation 'org.springframework.boot:spring-boot-starter-actuator'
-
-    implementation 'com.mysql:mysql-connector-j:8.0.31'
-
-    testFixturesImplementation 'com.fasterxml.jackson.core:jackson-databind'
-
-    implementation 'org.springframework.amqp:spring-rabbit'
 }
 
 tasks.named('test') {
