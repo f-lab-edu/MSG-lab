@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 public class SavePushMessageService {
     private final MessageRepository repository;
 
-    public void doSave(final Message message) {
+    public void save(final Message message) {
         repository.save(message);
     }
 

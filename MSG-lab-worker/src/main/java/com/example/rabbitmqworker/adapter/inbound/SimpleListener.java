@@ -20,6 +20,6 @@ public class SimpleListener {
 
     @RabbitListener(queues = RabbitProperty.Fields.QUEUE_NAME)
     public void listen(@RequestBody final MessageRequestV1 messageRequestV1) {
-        service.doSave(messageRequestV1.toMessage());
+        service.save(messageRequestV1.toMessage());
     }
 }
