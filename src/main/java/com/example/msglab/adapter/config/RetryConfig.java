@@ -16,15 +16,17 @@ import org.springframework.web.client.RestTemplate;
 public class RetryConfig {
     @Bean
     public RestTemplate retryableRestTemplate() {
-        SimpleClientHttpRequestFactory clientHttpRequestFactory = new SimpleClientHttpRequestFactory();
+        final SimpleClientHttpRequestFactory clientHttpRequestFactory = new SimpleClientHttpRequestFactory();
         clientHttpRequestFactory.setReadTimeout(2000);
         clientHttpRequestFactory.setConnectTimeout(500);
 
         return new RestTemplate(clientHttpRequestFactory) {
             @Override
-            @Retryable(value = HttpServerErrorException.class, maxAttempts = 3, backoff = @Backoff(delay = 1000))
+            @Retryable(value = HttpServerErrorException.class, maxAttempts = 3,
+                    backoff = @Backoff(delay = 1000))
             public <T> ResponseEntity<T> postForEntity(String url, Object request,
-                Class<T> responseType, Object... uriVariables) throws HttpServerErrorException {
+                                                       Class<T> responseType, Object... uriVariables)
+                    throws HttpServerErrorException {
                 return super.postForEntity(url, request, responseType, uriVariables);
             }
 

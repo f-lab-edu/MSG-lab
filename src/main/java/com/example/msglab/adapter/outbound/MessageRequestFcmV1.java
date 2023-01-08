@@ -31,14 +31,16 @@ public class MessageRequestFcmV1 {
      * @return FCM api 버전1에 맞게 변환
      */
     public static MessageRequestFcmV1 from(Message message) {
-        return new MessageRequestFcmV1(message.getTo(), new Notification(message.getNotification().getTitle(), message.getNotification().getBody()));
+        return new MessageRequestFcmV1(message.getTo(), new Notification(message.getNotification().getTitle(),
+                                                                         message.getNotification().getBody()));
     }
 
     public String toJson() {
         try {
             return mapper.writeValueAsString(this);
         } catch (JsonProcessingException e) {
-            throw new JsonConvertException(ExceptionClass.PUSH, HttpStatus.BAD_REQUEST, "can't convert messageRequestFcm to json");
+            throw new JsonConvertException(ExceptionClass.PUSH, HttpStatus.BAD_REQUEST,
+                                           "can't convert messageRequestFcm to json");
         }
     }
 

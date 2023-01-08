@@ -13,6 +13,7 @@ public class MessageClientResp {
     public MessageClientResp(ResponseEntity<String> response) {
         this.response = response;
     }
+
     // todo(hun) : reponse에 담긴 httpCode를 Status로 변환하기
     public HttpStatus getStatus() {
         return HttpStatus.OK;
