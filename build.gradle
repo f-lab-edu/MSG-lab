@@ -8,17 +8,37 @@ version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
 
 allprojects {
+    repositories {
+        mavenCentral()
+    }
+}
+
+subprojects {
     apply plugin: 'checkstyle'
+    apply plugin: 'java'
+
+    sourceCompatibility = '11'
+    targetCompatibility = '11'
+
+    checkstyleTest {
+        enabled = false
+    }
+
+    dependencies {
+        implementation 'org.springframework.amqp:spring-rabbit'
+        implementation 'org.springframework.boot:spring-boot-starter-actuator'
+        testImplementation 'org.springframework.boot:spring-boot-starter-test'
+        annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+
+        compileOnly 'org.projectlombok:lombok'
+        annotationProcessor 'org.projectlombok:lombok'
+    }
 }
 
 configurations {
     compileOnly {
         extendsFrom annotationProcessor
     }
-}
-
-repositories {
-    mavenCentral()
 }
 
 checkstyleTest {
