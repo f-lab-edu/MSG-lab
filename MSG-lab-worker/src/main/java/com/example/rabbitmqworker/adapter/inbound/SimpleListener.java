@@ -1,13 +1,13 @@
 package com.example.rabbitmqworker.adapter.inbound;
 
+import org.springframework.amqp.rabbit.annotation.RabbitListener;
+import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.RequestBody;
+
 import com.example.rabbitmqworker.adapter.config.RabbitProperty;
 import com.example.rabbitmqworker.application.SavePushMessageService;
 
 import lombok.RequiredArgsConstructor;
-
-import org.springframework.amqp.rabbit.annotation.RabbitListener;
-import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.RequestBody;
 
 /**
  * 메세지 브로커에서 메세지를 가져와서 처리합니다.
