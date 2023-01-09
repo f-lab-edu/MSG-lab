@@ -3,7 +3,6 @@ package com.example.msglab.domain;
 import java.util.UUID;
 
 import lombok.AllArgsConstructor;
-
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -20,7 +19,6 @@ public class Message {
     private String to;
 
     private Notification notification;
-
 
     public Message(String to, Notification notification) {
         id = UUID.randomUUID().toString();

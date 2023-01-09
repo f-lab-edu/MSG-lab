@@ -1,14 +1,14 @@
 package com.example.msglab.application;
 
-import com.example.msglab.domain.Message;
-import com.example.msglab.application.outbound.MessageBrokerClient;
-import com.example.msglab.application.outbound.MessageClient;
-
-import lombok.RequiredArgsConstructor;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+
+import com.example.msglab.application.outbound.MessageBrokerClient;
+import com.example.msglab.application.outbound.MessageClient;
+import com.example.msglab.domain.Message;
+
+import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor

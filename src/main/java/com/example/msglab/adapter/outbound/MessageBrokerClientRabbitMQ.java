@@ -1,13 +1,13 @@
 package com.example.msglab.adapter.outbound;
 
-import com.example.msglab.adapter.config.RabbitProperty;
-import com.example.msglab.domain.Message;
-import com.example.msglab.application.outbound.MessageBrokerClient;
-
-import lombok.RequiredArgsConstructor;
-
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Component;
+
+import com.example.msglab.adapter.config.RabbitProperty;
+import com.example.msglab.application.outbound.MessageBrokerClient;
+import com.example.msglab.domain.Message;
+
+import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @Component
