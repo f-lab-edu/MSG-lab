@@ -1,7 +1,7 @@
 package com.example.msglab;
 
-import com.example.msglab.domain.Message;
-import com.example.msglab.domain.Notification;
+import com.example.msglabapi.domain.Message;
+import com.example.msglabapi.domain.Notification;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 

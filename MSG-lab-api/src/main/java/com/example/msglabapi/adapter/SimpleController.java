@@ -1,0 +1,17 @@
+package com.example.msglabapi.adapter;
+
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class SimpleController {
+
+    @GetMapping("/")
+    public String index() throws UnknownHostException {
+        final String ip = InetAddress.getLocalHost().getHostAddress();
+        return "hello " + ip;
+    }
+}
