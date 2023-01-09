@@ -9,9 +9,11 @@ public class JsonRequestDummy {
 
     private static final ObjectMapper objectMapper = new ObjectMapper();
 
-    public static final String correctValue = toJson(new Message("/topics/news", new Notification("Breaking News", "asdad")));
+    public static final String correctValue = toJson(
+            new Message("/topics/news", new Notification("Breaking News", "asdad")));
 
-    public static final String NotCorrectValue = toJson(new Message("/topics/news", new Notification("", "asdad")));
+    public static final String NotCorrectValue = toJson(
+            new Message("/topics/news", new Notification("", "asdad")));
 
     private static <T> String toJson(T obj) {
         try {
