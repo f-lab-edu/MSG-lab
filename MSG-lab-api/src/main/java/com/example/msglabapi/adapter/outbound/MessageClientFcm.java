@@ -2,14 +2,13 @@ package com.example.msglabapi.adapter.outbound;
 
 import javax.annotation.PostConstruct;
 
-import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.RequestEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
-import com.example.msglabapi.adapter.config.ConfigFCM;
+import com.example.msglabapi.adapter.config.ConfigFcm;
 import com.example.msglabapi.application.outbound.MessageClient;
 import com.example.msglabapi.domain.Message;
 
@@ -20,11 +19,11 @@ import lombok.RequiredArgsConstructor;
  */
 @Component
 @RequiredArgsConstructor
-public class MessageClientFCM implements MessageClient {
+public class MessageClientFcm implements MessageClient {
 
-    private final ConfigFCM configFCM;
+    private final ConfigFcm configFCM;
 
-    private HttpHeaders headers = new HttpHeaders();
+    private final HttpHeaders headers = new HttpHeaders();
 
     private final RestTemplate restTemplate;
 
@@ -37,16 +36,19 @@ public class MessageClientFCM implements MessageClient {
     @Override
     public void send(Message message) {
         final MessageRequestFcmV1 messageRequestFCM = MessageRequestFcmV1.from(message);
-        final String data = messageRequestFCM.toJson();
-        final HttpEntity<String> request = createRequest(data);
-        final ResponseEntity<String> response = postRequest(request);
+        final RequestEntity<MessageRequestFcmV1> request = getRequest(messageRequestFCM);
+        post(request);
     }
 
-    private HttpEntity<String> createRequest(String message) {
-        return new HttpEntity<>(message, headers);
+    private RequestEntity<MessageRequestFcmV1> getRequest(
+            MessageRequestFcmV1 messageRequestFCM) {
+        return RequestEntity
+                .post(configFCM.getUrl())
+                .headers(headers)
+                .body(messageRequestFCM);
     }
 
-    private ResponseEntity<String> postRequest(HttpEntity<String> request) {
-        return restTemplate.postForEntity(configFCM.getUrl(), request, String.class);
+    private void post(RequestEntity<MessageRequestFcmV1> request) {
+        restTemplate.exchange(request, String.class);
     }
 }

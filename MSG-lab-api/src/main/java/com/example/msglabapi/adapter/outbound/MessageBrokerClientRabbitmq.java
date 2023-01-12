@@ -11,7 +11,7 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @Component
-public class MessageBrokerClientRabbitMQ implements MessageBrokerClient {
+public class MessageBrokerClientRabbitmq implements MessageBrokerClient {
 
     private final RabbitTemplate rabbitTemplate;
 

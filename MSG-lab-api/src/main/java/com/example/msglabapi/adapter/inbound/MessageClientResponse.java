@@ -6,11 +6,11 @@ import org.springframework.http.ResponseEntity;
 /**
  * FCM 등으로 push message를 전송하면 리턴되는 응답 객체입니다.
  */
-public class MessageClientResp {
+public class MessageClientResponse {
 
     private final ResponseEntity<String> response;
 
-    public MessageClientResp(ResponseEntity<String> response) {
+    public MessageClientResponse(ResponseEntity<String> response) {
         this.response = response;
     }
 

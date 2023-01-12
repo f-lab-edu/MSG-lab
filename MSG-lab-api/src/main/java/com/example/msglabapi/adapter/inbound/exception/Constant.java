@@ -1,22 +1,19 @@
 package com.example.msglabapi.adapter.inbound.exception;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
 public class Constant {
+    @AllArgsConstructor
+    @Getter
     public enum ExceptionClass {
         PUSH("push-message");
 
         private final String exceptionClassName;
 
-        ExceptionClass(String exceptionClassName) {
-            this.exceptionClassName = exceptionClassName;
-        }
-
-        public String getExceptionClass() {
-            return exceptionClassName;
-        }
-
         @Override
         public String toString() {
-            return getExceptionClass() + " Exception. ";
+            return getExceptionClassName() + " Exception. ";
         }
     }
 }
