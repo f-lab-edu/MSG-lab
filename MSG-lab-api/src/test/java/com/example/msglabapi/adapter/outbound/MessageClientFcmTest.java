@@ -25,10 +25,6 @@ class MessageClientFcmTest {
         final RestTemplate restTemplate = mock(RestTemplate.class);
         Mockito.when(config.getUrl()).thenReturn("aaa.com");
 
-        final HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-        headers.add("Authorization", config.getAuth());
-
         final MessageClientFcm messageClientFCM = new MessageClientFcm(config, restTemplate);
         messageClientFCM.init();
 
