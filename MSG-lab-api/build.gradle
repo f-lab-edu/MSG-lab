@@ -1,0 +1,43 @@
+plugins {
+    id 'org.springframework.boot' version '2.7.5'
+    id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+    id 'java-test-fixtures'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+bootJar {
+    enabled = false
+}
+
+jar {
+    enabled = true
+    baseName = 'api'
+    version = '1.0.0'
+    classifier = 'jdk11'
+}
+
+checkstyleTestFixtures {
+    enabled = false
+}
+
+dependencies {
+    // sort by type, impl, compile, test
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.retry:spring-retry'
+    implementation 'org.springframework.boot:spring-boot-starter-aop'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+    testFixturesImplementation 'com.fasterxml.jackson.core:jackson-databind'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
