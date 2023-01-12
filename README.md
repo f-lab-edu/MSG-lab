@@ -4,7 +4,7 @@
 
 ## 원하는 주제로 원하는 만큼 전송하세요!
 
-MSG-Lab은 대량으로 푸시 메세지를 발송해주고, 백업해주는 서비스입니다
+MSG-Lab은 대량으로 푸시 메세지를 발송해주고, 백업해주는 서비스입니다.
 
 </div>
 
@@ -19,7 +19,7 @@ MSG-Lab은 대량으로 푸시 메세지를 발송해주고, 백업해주는 서
 
 ## 이런걸 만들었어요
 
-- 언제나 원하는 주제로 전송 가능한 알림 메세지 기능! ✉️
+- 언제나 원하는 주제로 전송할 수 있는 알림 메시지 기능! ✉️
 - 클라우드 인프라를 통한 유연하고 안전한 서비스! ⛅️
 - 모니터링 시스템을 통한 안정적인 운영! 👨‍🔧
 - 읽기 쉽고 유연한 코드! 📝
@@ -28,19 +28,19 @@ MSG-Lab은 대량으로 푸시 메세지를 발송해주고, 백업해주는 서
 
 ### 원하는 주제로, 원하는 알림을 전송 ✉️
 
-<img src="https://user-images.githubusercontent.com/46879264/211699783-243b218d-4b04-4222-a992-b2143544ee15.png" width="700" height="450">
+<img src="https://user-images.githubusercontent.com/46879264/211699783-243b218d-4b04-4222-a992-b2143544ee15.png" width="700" height="600">
 
 ### 안정적인 서비스를 위한 클라우드 인프라 ☁️
 
-<img src="https://user-images.githubusercontent.com/46879264/206967763-9c81e26e-8720-4489-a579-0e8cc9a595ab.png" width="700" height="450" />
+<img src="https://user-images.githubusercontent.com/46879264/206967763-9c81e26e-8720-4489-a579-0e8cc9a595ab.png" width="750" height="600" />
 
 ### 안정적인 운영을 위한 모니터링 시스템 📈
 
-<img alt="msg-lab  그라파나 모니터링 화면" src="https://user-images.githubusercontent.com/46879264/209894757-84688ae7-b15a-4adc-82ea-92bd89e778b4.png" width="700" height="1200">
+<img alt="msg-lab  그라파나 모니터링 화면" src="https://user-images.githubusercontent.com/46879264/209894757-84688ae7-b15a-4adc-82ea-92bd89e778b4.png" width="800" height="2200">
 
 ### 성능 추적을 위한 APM 🔎
 
-<img alt="msg-lab  pinpoint 화면" src="https://user-images.githubusercontent.com/46879264/209425804-86a55369-7cde-46f4-b46f-347d2ab55d7c.png" width="700" height="450">
+<img alt="msg-lab  pinpoint 화면" src="https://user-images.githubusercontent.com/46879264/209425804-86a55369-7cde-46f4-b46f-347d2ab55d7c.png" width="800" height="450">
 
 ### 백엔드 아키텍처
 
