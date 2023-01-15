@@ -30,8 +30,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter'
     implementation 'org.springframework.boot:spring-boot-starter-web'
 
-    // 테스트를 위한 의존성
-    implementation 'com.h2database:h2'
+    testImplementation 'com.h2database:h2'
 
     implementation 'com.mysql:mysql-connector-j'
 }
