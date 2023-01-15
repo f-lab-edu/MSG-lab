@@ -5,9 +5,6 @@ spring:
     generate-ddl: false
     hibernate:
       ddl-auto: validate
-  profiles:
-    group:
-      "develop": "dev"
 management:
   metrics:
     distribution:
@@ -35,7 +32,7 @@ server:
 spring:
   config:
     activate:
-      on-profile: "dev"
+      on-profile: dev
   rabbitmq:
     host: # 호스트 주소
     port: # 호스트 포트
