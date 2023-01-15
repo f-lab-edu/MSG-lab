@@ -1,0 +1,45 @@
+name: Backend Github Action Workflow
+
+on:
+  push:
+    branches: [ "main", "dev" ]
+  pull_request:
+    branches: [ "main", "dev" ]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    env:
+      accesskey: ${{  secrets.accesskey  }}
+      secretkey: ${{  secrets.secretkey  }}
+
+    permissions: read-all
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+      - name: Set up JDK 11
+        uses: actions/setup-java@v3
+        with:
+          java-version: '11'
+          distribution: 'temurin'
+      - name: Run gradle build
+        run: |
+          ./gradlew build
+        shell: bash
+      - name: deploy jar into NCP
+        run: |
+          mkdir deploy
+          cp build/libs/*.jar deploy/
+          cd deploy && zip -r app.zip .
+          cd ..
+          sudo add-apt-repository ppa:deadsnakes/ppa
+          sudo apt-get update -y
+          sudo apt install python3.11 -y
+          python --version
+          cd script
+          python deploy.py $accesskey $secretkey
+        shell: bash

@@ -1,11 +1,11 @@
-package com.example.rabbitmqworker;
+package com.example.msglabapi;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class RabbitMqWorkerApplication {
+public class MsgLabApiApplication {
     public static void main(String[] args) {
-        SpringApplication.run(RabbitMqWorkerApplication.class, args);
+        SpringApplication.run(MsgLabApiApplication.class, args);
     }
 }

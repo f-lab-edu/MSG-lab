@@ -1,13 +1,39 @@
 plugins {
     id 'java'
-    id 'org.springframework.boot' version '2.7.5'
-    id 'io.spring.dependency-management' version '1.0.15.RELEASE'
-    id 'java-test-fixtures'
+    id 'checkstyle'
 }
 
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
+
+allprojects {
+    repositories {
+        mavenCentral()
+    }
+}
+
+subprojects {
+    apply plugin: 'checkstyle'
+    apply plugin: 'java'
+
+    sourceCompatibility = '11'
+    targetCompatibility = '11'
+
+    checkstyleTest {
+        enabled = false
+    }
+
+    dependencies {
+        implementation 'org.springframework.amqp:spring-rabbit'
+        implementation 'org.springframework.boot:spring-boot-starter-actuator'
+        testImplementation 'org.springframework.boot:spring-boot-starter-test'
+        annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+
+        compileOnly 'org.projectlombok:lombok'
+        annotationProcessor 'org.projectlombok:lombok'
+    }
+}
 
 configurations {
     compileOnly {
@@ -15,32 +41,12 @@ configurations {
     }
 }
 
-repositories {
-    mavenCentral()
+checkstyleTest {
+    enabled = false
 }
 
 dependencies {
-    // sort by type, impl, compile, test
-    implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'org.springframework.retry:spring-retry'
-    implementation 'org.springframework.boot:spring-boot-starter-aop'
-    implementation 'org.springframework.boot:spring-boot-starter-validation'
-    implementation 'org.springframework.boot:spring-boot-starter-actuator'
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-    implementation 'org.springframework.amqp:spring-rabbit'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
 
-    implementation 'org.projectlombok:lombok'
-    annotationProcessor 'org.projectlombok:lombok'
-
-    implementation 'com.h2database:h2'
-
-    implementation 'com.mysql:mysql-connector-j:8.0.31'
-
-    testFixturesImplementation 'com.fasterxml.jackson.core:jackson-databind'
-
-    implementation 'io.micrometer:micrometer-registry-prometheus'
 }
 
 tasks.named('test') {
