@@ -8,7 +8,7 @@ import org.springframework.http.RequestEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
-import com.example.msglabapi.adapter.config.ConfigFcm;
+import com.example.msglabapi.adapter.config.PropertyFcm;
 import com.example.msglabapi.application.outbound.MessageClient;
 import com.example.msglabapi.domain.Message;
 
@@ -21,7 +21,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class MessageClientFcm implements MessageClient {
 
-    private final ConfigFcm configFCM;
+    private final PropertyFcm configFCM;
 
     private final HttpHeaders headers = new HttpHeaders();
 
