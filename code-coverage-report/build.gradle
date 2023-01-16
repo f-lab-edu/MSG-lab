@@ -2,14 +2,22 @@ plugins {
     id 'org.springframework.boot' version '2.7.5'
     id 'io.spring.dependency-management' version '1.0.15.RELEASE'
     id 'jacoco-report-aggregation'
-    id 'com.github.nbaztec.coveralls-jacoco' version '1.2.15'
+    id 'jacoco'
+    id 'com.github.kt3k.coveralls' version '2.12.0'
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled = true // coveralls plugin depends on xml format report
+        html.enabled = true
+    }
 }
 
 group 'com.example'
 version '0.0.1-SNAPSHOT'
 
 repositories {
-    mavenCentral()
+    mavenLocal()
 }
 
 jar {
@@ -20,10 +28,6 @@ bootJar {
     enabled = false
 }
 
-tasks.named('check') {
-    dependsOn tasks.named('testCodeCoverageReport', JacocoReport)
-}
-
-coverallsJacoco {
-    reportPath = "code-coverage-report/build/reports/jacoco/testCodeCoverageReport/testCodeCoverageReport.xml"
+tasks.coveralls {
+    dependsOn 'check'
 }

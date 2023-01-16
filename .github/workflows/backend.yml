@@ -33,10 +33,10 @@ jobs:
           ./gradlew build
         shell: bash
 
-      - name: test and publish coverage
-        env:
-          COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
-        run: ./gradlew test jacocoTestReport coverallsJacoco
+      - name: Run  coveralls
+        run: |
+          ./gradlew :code-coverage-report:testCodeCoverageReport :code-coverage-report:jacocoTestReport :code-coverage-report:coveralls
+        shell: bash
 
       - name: deploy jar into NCP
         run: |
