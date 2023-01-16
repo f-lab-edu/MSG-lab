@@ -1,40 +1,43 @@
 plugins {
-	id 'org.springframework.boot' version '2.7.5'
-	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+    id 'org.springframework.boot' version '2.7.5'
+    id 'io.spring.dependency-management' version '1.0.15.RELEASE'
 }
 
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
 
 configurations {
-	compileOnly {
-		extendsFrom annotationProcessor
-	}
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
 }
 
 bootJar {
-	enabled = false
+    enabled = true
+    baseName = 'worker-boot'
+    version = '1.0.0'
+    classifier = 'jdk11'
 }
 
 jar {
-	enabled = true
-	baseName = 'worker'
-	version = '1.0.0'
-	classifier = 'jdk11'
+    enabled = true
+    baseName = 'worker'
+    version = '1.0.0'
+    classifier = 'jdk11'
 }
 
 dependencies {
-	// sort by type, impl, compile, test
-	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
-	implementation 'org.springframework.boot:spring-boot-starter'
-	implementation 'org.springframework.boot:spring-boot-starter-web'
+    // sort by type, impl, compile, test
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+    implementation 'org.springframework.boot:spring-boot-starter'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
 
-	implementation 'com.h2database:h2'
+    implementation 'com.h2database:h2'
 
-	implementation 'com.mysql:mysql-connector-j'
+    implementation 'com.mysql:mysql-connector-j'
 }
 
 tasks.named('test') {
-	useJUnitPlatform()
+    useJUnitPlatform()
 }
