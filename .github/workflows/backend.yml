@@ -35,8 +35,8 @@ jobs:
 
       - name: Run  coveralls
         run: |
-          ./gradlew jacocoFullReport
-          ./gradlew coverallsJacoco
+          ./gradlew :coveralls:jacocoFullReport
+          ./gradlew :coveralls:coverallsJacoco
         shell: bash
         env:
           COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
