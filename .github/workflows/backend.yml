@@ -35,7 +35,10 @@ jobs:
 
       - name: Run  coveralls
         run: |
-          ./gradlew :code-coverage-report:testCodeCoverageReport :code-coverage-report:jacocoTestReport :code-coverage-report:coveralls
+          ./gradlew :code-coverage-report:testCodeCoverageReport
+          mv /home/runner/work/MSG-lab/MSG-lab/code-coverage-report/build/reports/jacoco/test/testCodeCoverageReport.xml /home/runner/work/MSG-lab/MSG-lab/code-coverage-report/build/reports/jacoco/test/jacocoTestReport.xml 
+          mv /home/runner/work/MSG-lab/MSG-lab/code-coverage-report/build/reports/jacoco/testCodeCoverageReport /home/runner/work/MSG-lab/MSG-lab/code-coverage-report/build/reports/jacoco/test
+          ./gradlew :code-coverage-report:coveralls
         shell: bash
         env:
           COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
