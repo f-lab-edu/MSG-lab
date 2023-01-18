@@ -5,16 +5,17 @@ spring:
     generate-ddl: false
     hibernate:
       ddl-auto: validate
-  profiles:
-    group:
-      "develop": "dev"
 management:
-  server:
-    port: 8081
+  metrics:
+    distribution:
+      percentiles:
+        http: 0.95, 0.9, 0.7, 0.5, 0.3
   endpoints:
     web:
       exposure:
         include: health, info, metrics, prometheus
+  server:
+    port: 8081
 server:
   tomcat:
     connection-timeout: 6000
@@ -25,12 +26,13 @@ server:
     max-connections: 300
     mbeanregistry:
       enabled: true
+
 ---
 
 spring:
   config:
     activate:
-      on-profile: "dev"
+      on-profile: dev
   rabbitmq:
     host: # 호스트 주소
     port: # 호스트 포트
