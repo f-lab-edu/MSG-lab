@@ -2,3 +2,4 @@ rootProject.name = 'MSG-lab'
 
 include 'MSG-lab-worker'
 include 'MSG-lab-api'
+include 'MSG-lab-common'
