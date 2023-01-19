@@ -11,6 +11,7 @@ import org.springframework.web.client.RestTemplate;
 import com.example.msglabapi.adapter.config.PropertyFcm;
 import com.example.msglabapi.application.outbound.MessageClient;
 import com.example.msglabapi.domain.Message;
+import com.google.common.annotations.VisibleForTesting;
 
 import lombok.RequiredArgsConstructor;
 
@@ -28,6 +29,7 @@ public class MessageClientFcm implements MessageClient {
     private final RestTemplate restTemplate;
 
     @PostConstruct
+    @VisibleForTesting
     final void init() {
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.add("Authorization", configFCM.getAuth());
