@@ -5,6 +5,8 @@ spring:
     generate-ddl: false
     hibernate:
       ddl-auto: validate
+  profiles:
+    active: dev
 management:
   metrics:
     distribution:
@@ -44,5 +46,5 @@ spring:
     username: # 데이터베이스 접속 시 입력할 username 정보
     password: # 데이터베이스 접속 시 입력할 password 정보
 fcm:
-  auth: # fcm authkey 입력
+  auth: auth # fcm authkey 입력
   url: https://fcm.googleapis.com/fcm/send

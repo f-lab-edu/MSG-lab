@@ -8,9 +8,10 @@ import org.springframework.http.RequestEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
-import com.example.msglabapi.adapter.config.ConfigFcm;
+import com.example.msglabapi.adapter.config.PropertyFcm;
 import com.example.msglabapi.application.outbound.MessageClient;
 import com.example.msglabapi.domain.Message;
+import com.google.common.annotations.VisibleForTesting;
 
 import lombok.RequiredArgsConstructor;
 
@@ -21,13 +22,14 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class MessageClientFcm implements MessageClient {
 
-    private final ConfigFcm configFCM;
+    private final PropertyFcm configFCM;
 
     private final HttpHeaders headers = new HttpHeaders();
 
     private final RestTemplate restTemplate;
 
     @PostConstruct
+    @VisibleForTesting
     final void init() {
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.add("Authorization", configFCM.getAuth());
