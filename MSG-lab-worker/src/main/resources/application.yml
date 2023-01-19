@@ -1,16 +1,10 @@
 #default
 spring:
-  rabbitmq:
-    host: # 호스트 주소
-    port: # 호스트 포트번호
-    username: # 유저네임
-    password: # 유저 패스워드
   jpa:
     open-in-view: false
     generate-ddl: false
   profiles:
-    group:
-      "develop": "dev"
+    active: dev
 server:
   tomcat:
     connection-timeout: 6000
@@ -26,9 +20,14 @@ server:
 ---
 
 spring:
+  rabbitmq:
+    host: # 호스트 주소
+    port: # 호스트 포트번호
+    username: # 유저네임
+    password: # 유저 패스워드
   config:
     activate:
-      on-profile: "dev"
+      on-profile: dev
   datasource:
     driver-class-name: # 데이터베이스 드라이버 설정
     url: # 데이터베이스 접속 정보
