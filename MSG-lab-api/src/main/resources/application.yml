@@ -41,8 +41,8 @@ spring:
     username: # 유저네임
     password: # 유저암호
   datasource:
-    driver-class-name: # 데이터베이스 드라이버 설정
-    url: # 데이터베이스 접속 정보
+    driver-class-name: # 데이터베이스 드라이버 설정, MySQL은 com.mysql.cj.jdbc.Driver
+    url: # 데이터베이스 접속 정보, { 프로토콜 }://{주소}:{포트}/{데이터베이스 이름}, 주로 프로토콜은 jdbc:mysql 사용
     username: # 데이터베이스 접속 시 입력할 username 정보
     password: # 데이터베이스 접속 시 입력할 password 정보
 fcm:
