@@ -14,7 +14,10 @@ configurations {
 }
 
 bootJar {
-    enabled = false
+    enabled = true
+    baseName = 'api-boot'
+    version = '1.0.0'
+    classifier = 'jdk11'
 }
 
 jar {
@@ -34,6 +37,8 @@ dependencies {
     implementation 'org.springframework.retry:spring-retry'
     implementation 'org.springframework.boot:spring-boot-starter-aop'
     implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+    implementation 'com.google.guava:guava:31.1-jre'
 
     testFixturesImplementation 'com.fasterxml.jackson.core:jackson-databind'
 }

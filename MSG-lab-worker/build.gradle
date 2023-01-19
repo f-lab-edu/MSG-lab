@@ -13,7 +13,10 @@ configurations {
 }
 
 bootJar {
-    enabled = false
+    enabled = true
+    baseName = 'worker-boot'
+    version = '1.0.0'
+    classifier = 'jdk11'
 }
 
 jar {
