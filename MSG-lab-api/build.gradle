@@ -45,6 +45,8 @@ dependencies {
     implementation 'com.google.guava:guava:31.1-jre'
 
     testFixturesImplementation 'com.fasterxml.jackson.core:jackson-databind'
+
+    implementation project(':MSG-lab-common')
 }
 
 tasks.named('test') {
