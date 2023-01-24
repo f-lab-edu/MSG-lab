@@ -42,9 +42,11 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
 
-    implementation 'com.google.guava:guava:31.1-jre'
-
     testFixturesImplementation 'com.fasterxml.jackson.core:jackson-databind'
+    testFixturesImplementation 'org.springframework.boot:spring-boot-starter-web'
+    testFixturesImplementation 'org.mockito:mockito-core'
+    testFixturesImplementation 'org.projectlombok:lombok'
+    testFixturesAnnotationProcessor 'org.projectlombok:lombok'
 }
 
 tasks.named('test') {
