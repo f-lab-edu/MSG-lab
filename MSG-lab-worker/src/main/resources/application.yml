@@ -20,16 +20,16 @@ server:
 ---
 
 spring:
-  rabbitmq:
-    host: # 호스트 주소
-    port: # 호스트 포트번호
-    username: # 유저네임
-    password: # 유저 패스워드
   config:
     activate:
       on-profile: dev
+  rabbitmq:
+    host: localhost
+    port: 15672
+    username: guest
+    password: guest
   datasource:
-    driver-class-name:
-    url:
-    username:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:~/db
+    username: guest
     password:
