@@ -4,7 +4,6 @@ import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import com.example.rabbitmqworker.adapter.config.RabbitProperty;
 import com.example.rabbitmqworker.application.SavePushMessageService;
 
 import lombok.RequiredArgsConstructor;
@@ -14,11 +13,12 @@ import lombok.RequiredArgsConstructor;
  */
 @Component
 @RequiredArgsConstructor
-public class SimpleListener {
+public class PushMessageListener {
 
     private final SavePushMessageService service;
 
-    @RabbitListener(queues = RabbitProperty.Fields.QUEUE_NAME)
+    // todo(hun): #69 이슈를 해결해야함
+    @RabbitListener(queues = "simple.news")
     public void listen(@RequestBody final MessageRequestV1 messageRequestV1) {
         service.save(messageRequestV1.toMessage());
     }

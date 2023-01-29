@@ -6,15 +6,18 @@ spring:
     hibernate:
       ddl-auto: validate
   profiles:
-    group:
-      "develop": "dev"
+    active: dev
 management:
-  server:
-    port: 8081
+  metrics:
+    distribution:
+      percentiles:
+        http: 0.95, 0.9, 0.7, 0.5, 0.3
   endpoints:
     web:
       exposure:
         include: health, info, metrics, prometheus
+  server:
+    port: 8081
 server:
   tomcat:
     connection-timeout: 6000
@@ -25,22 +28,23 @@ server:
     max-connections: 300
     mbeanregistry:
       enabled: true
+
 ---
 
 spring:
   config:
     activate:
-      on-profile: "dev"
+      on-profile: dev
   rabbitmq:
-    host: # 호스트 주소
-    port: # 호스트 포트
-    username: # 유저네임
-    password: # 유저암호
+    host:
+    port:
+    username:
+    password:
   datasource:
-    driver-class-name: # 데이터베이스 드라이버 설정
-    url: # 데이터베이스 접속 정보
-    username: # 데이터베이스 접속 시 입력할 username 정보
-    password: # 데이터베이스 접속 시 입력할 password 정보
+    driver-class-name:
+    url:
+    username:
+    password:
 fcm:
-  auth: # fcm authkey 입력
+  auth: auth
   url: https://fcm.googleapis.com/fcm/send
