@@ -1,8 +1,10 @@
 package com.example.common.config;
 
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
 @Getter
+@RequiredArgsConstructor
 public enum RabbitProperty {
 
     EXCHANGE_NAME("simple.news"),
@@ -10,8 +12,4 @@ public enum RabbitProperty {
     ROUTING_KEY("simple.news.#");
 
     private final String value;
-
-    RabbitProperty(String value) {
-        this.value = value;
-    }
 }
