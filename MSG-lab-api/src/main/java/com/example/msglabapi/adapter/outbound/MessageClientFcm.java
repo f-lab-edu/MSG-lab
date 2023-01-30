@@ -31,7 +31,7 @@ public class MessageClientFcm implements MessageClient {
     @PostConstruct
     final void init() {
         headers.setContentType(MediaType.APPLICATION_JSON);
-        headers.add("Authorization", propertyFcm.getAuth());
+        headers.add(HttpHeaders.AUTHORIZATION, propertyFcm.getAuth());
     }
 
     @Override
