@@ -1,10 +1,7 @@
 package com.example.msglabapi.adapter.outbound;
 
-import java.time.Duration;
-
 import javax.annotation.PostConstruct;
 
-import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.RequestEntity;
@@ -29,18 +26,12 @@ public class MessageClientFcm implements MessageClient {
 
     private final HttpHeaders headers = new HttpHeaders();
 
-    private final RestTemplateBuilder restTemplateBuilder;
-
-    private RestTemplate restTemplate;
+    private final RestTemplate restTemplate;
 
     @PostConstruct
     final void init() {
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.add("Authorization", propertyFcm.getAuth());
-        restTemplate = restTemplateBuilder
-                .setReadTimeout(Duration.ofSeconds(3000))
-                .setConnectTimeout(Duration.ofSeconds(3000))
-                .build();
     }
 
     @Override

@@ -86,8 +86,9 @@ class MessageClientFcmTest {
         @Bean
         public MessageClientFcm messageClientFcm() {
             final PropertyFcm propertyFcm = mock(PropertyFcm.class);
+            final RestTemplate restTemplate = TEMPLATE_BUILDER.build();
             when(propertyFcm.getUrl()).thenReturn("url");
-            return new MessageClientFcm(propertyFcm, TEMPLATE_BUILDER);
+            return new MessageClientFcm(propertyFcm, restTemplate);
         }
     }
 }
