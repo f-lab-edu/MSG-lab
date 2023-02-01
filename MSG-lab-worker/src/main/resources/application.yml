@@ -1,16 +1,10 @@
 #default
 spring:
-  rabbitmq:
-    host:
-    port:
-    username:
-    password:
   jpa:
     open-in-view: false
     generate-ddl: false
   profiles:
-    group:
-      "develop": "dev"
+    active: dev
 server:
   tomcat:
     connection-timeout: 6000
@@ -28,9 +22,14 @@ server:
 spring:
   config:
     activate:
-      on-profile: "dev"
+      on-profile: dev
+  rabbitmq:
+    host: localhost
+    port: 15672
+    username: guest
+    password: guest
   datasource:
-    driver-class-name:
-    url:
-    username:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:~/db
+    username: guest
     password:

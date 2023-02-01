@@ -2,7 +2,7 @@ version: "3.7"
 services:
   prometheus:
     build: .
-    ports: 
+    ports:
       - "9090:9090"
     tty: true
   grafana:
@@ -11,3 +11,8 @@ services:
       - 9900:3000
     depends_on:
       - prometheus
+  rabbitmq:
+    image: rabbitmq:management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
