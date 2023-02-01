@@ -47,6 +47,10 @@ dependencies {
     testFixturesImplementation 'com.fasterxml.jackson.core:jackson-databind'
 
     implementation project(':MSG-lab-common')
+    testFixturesImplementation 'org.springframework.boot:spring-boot-starter-web'
+    testFixturesImplementation 'org.mockito:mockito-core'
+    testFixturesImplementation 'org.projectlombok:lombok'
+    testFixturesAnnotationProcessor 'org.projectlombok:lombok'
 }
 
 tasks.named('test') {
