@@ -12,8 +12,9 @@ allprojects {
 }
 
 subprojects {
-    apply plugin: 'checkstyle'
     apply plugin: 'java'
+    apply plugin: 'checkstyle'
+    apply plugin: 'jacoco'
 
     sourceCompatibility = '11'
     targetCompatibility = '11'
@@ -25,5 +26,12 @@ subprojects {
     dependencies {
         implementation 'org.projectlombok:lombok:1.18.24'
         annotationProcessor 'org.projectlombok:lombok:1.18.24'
+    }
+}
+
+project(':coveralls') {
+    dependencies {
+        implementation project(':MSG-lab-api')
+        implementation project(':MSG-lab-worker')
     }
 }
