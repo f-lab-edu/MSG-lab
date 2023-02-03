@@ -1,5 +1,7 @@
 <div align=center>
 
+[![codecov](https://codecov.io/gh/f-lab-edu/MSG-lab/branch/main/graph/badge.svg?token=ECAPPHJO2N)](https://codecov.io/gh/f-lab-edu/MSG-lab)
+
 ## MSG-Lab 📬
 
 ## 원하는 주제로 원하는 만큼 전송하세요!
@@ -63,9 +65,13 @@ MSG-Lab은 대량으로 푸시 메세지를 발송해주고, 백업해주는 서
 ## 주요 내용
 
 ### - [API 사용 가이드](https://github.com/f-lab-edu/MSG-lab/wiki/API-%EA%B0%80%EC%9D%B4%EB%93%9C)
+
 ### - [인프라 소개](https://github.com/f-lab-edu/MSG-lab/wiki/%EC%9D%B8%ED%94%84%EB%9D%BC-%EC%86%8C%EA%B0%9C)
+
 ### - [개발 가이드](https://github.com/f-lab-edu/MSG-lab/wiki/Developer-guide)
-### - [그밖의 작업 내용](https://github.com/f-lab-edu/MSG-lab/wiki/%EC%9E%91%EC%97%85-%EB%82%B4%EC%9A%A9) 
+
+### - [그밖의 작업 내용](https://github.com/f-lab-edu/MSG-lab/wiki/%EC%9E%91%EC%97%85-%EB%82%B4%EC%9A%A9)
+
 ### - [기술 블로그](https://buevonhun.tistory.com/category/%EA%B0%9C%EB%B0%9C/MSG-Lab)
 
 ## 더 자세한 내용은 [위키](https://github.com/f-lab-edu/MSG-lab/wiki)에서 확인하세요!
