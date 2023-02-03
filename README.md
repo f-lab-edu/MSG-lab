@@ -2,10 +2,6 @@
 
 [![codecov](https://codecov.io/gh/f-lab-edu/MSG-lab/branch/main/graph/badge.svg?token=ECAPPHJO2N)](https://codecov.io/gh/f-lab-edu/MSG-lab)
 
-[![codecov](https://codecov.io/gh/f-lab-edu/MSG-lab/branch/main/graphs/tree.svg?token=ECAPPHJO2N)](https://codecov.io/gh/f-lab-edu/MSG-lab)
-[![codecov](https://codecov.io/gh/f-lab-edu/MSG-lab/branch/main/graphs/sunburst.svg?token=ECAPPHJO2N)](https://codecov.io/gh/f-lab-edu/MSG-lab)
-[![codecov](https://codecov.io/gh/f-lab-edu/MSG-lab/branch/main/graphs/icicle.svg?token=ECAPPHJO2N)](https://codecov.io/gh/f-lab-edu/MSG-lab)
-
 ## MSG-Lab 📬
 
 ## 원하는 주제로 원하는 만큼 전송하세요!
