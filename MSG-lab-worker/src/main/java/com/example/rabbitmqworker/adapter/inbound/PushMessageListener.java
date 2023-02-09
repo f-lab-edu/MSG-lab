@@ -17,7 +17,6 @@ public class PushMessageListener {
 
     private final SavePushMessageService service;
 
-    // todo(hun): #69 이슈를 해결해야함
     @RabbitListener(queues = "simple.news")
     public void listen(@RequestBody final MessageRequestV1 messageRequestV1) {
         service.save(messageRequestV1.toMessage());
