@@ -34,8 +34,20 @@ public class MessageClientFcm implements MessageClient {
         headers.add(HttpHeaders.AUTHORIZATION, propertyFcm.getAuth());
     }
 
+    /**
+     * 재요청 로직은 <a href="https://en.wikipedia.org/wiki/Packet_delay_variation">Packet delay variation</a>을 적용합니다.<br>
+     * 이는 Jitter(지터)로 알려진 개념입니다.<br>
+     * <br>
+     * 적용 방식은 아래와 같습니다.<br>
+     * Backoff(delay = 1000, multiplier = 1.2, maxDelay = 3000, random = true)이라면,<br>
+     * 처음 요청은 1초를 기다립니다.<br>
+     * 이후 요청은 이전 요청에 1.2를 곱한 기간, 여기서는 1.2초, 1초에서 1.2초 사이에 해당하는 시간을 기다립니다.<br>
+     * 각 요청은 최대 3초까지 기다립니다.
+     */
     @Override
-    @Retryable(maxAttempts = 3, backoff = @Backoff(delay = 1000), value = RestClientException.class)
+    @Retryable(maxAttempts = 3,
+            backoff = @Backoff(delay = 1000, multiplier = 1.2, maxDelay = 3000, random = true),
+            value = RestClientException.class)
     public void send(final Message message) {
         final MessageRequestFcmV1 messageRequestFCM = MessageRequestFcmV1.from(message);
         final RequestEntity<MessageRequestFcmV1> request = getRequest(messageRequestFCM);
