@@ -1,38 +1,22 @@
 package com.example.msglabapi.adapter.outbound;
 
-import javax.annotation.PostConstruct;
-
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
-import org.springframework.http.RequestEntity;
 import org.springframework.retry.annotation.Backoff;
 import org.springframework.retry.annotation.Recover;
 import org.springframework.retry.annotation.Retryable;
 import org.springframework.stereotype.Component;
-import org.springframework.web.client.RestClientException;
-import org.springframework.web.client.RestTemplate;
 
-import com.example.msglabapi.adapter.config.PropertyFcm;
 import com.example.msglabapi.application.outbound.MessageClient;
 import com.example.msglabapi.domain.Message;
 
 import lombok.RequiredArgsConstructor;
 
+import feign.FeignException.FeignClientException;
+
 @Component
 @RequiredArgsConstructor
 public class MessageClientFcm implements MessageClient {
 
-    private final PropertyFcm propertyFcm;
-
-    private final HttpHeaders headers = new HttpHeaders();
-
-    private final RestTemplate restTemplate;
-
-    @PostConstruct
-    final void init() {
-        headers.setContentType(MediaType.APPLICATION_JSON);
-        headers.add(HttpHeaders.AUTHORIZATION, propertyFcm.getAuth());
-    }
+    private final FcmFeignClient fcmFeignClient;
 
     /**
      * 재요청 로직은 <a href="https://en.wikipedia.org/wiki/Packet_delay_variation">Packet delay variation</a>을 적용합니다.<br>
@@ -47,27 +31,14 @@ public class MessageClientFcm implements MessageClient {
     @Override
     @Retryable(maxAttempts = 3,
             backoff = @Backoff(delay = 1000, multiplier = 1.2, maxDelay = 3000, random = true),
-            value = RestClientException.class)
+            value = FeignClientException.class)
     public void send(final Message message) {
         final MessageRequestFcmV1 messageRequestFCM = MessageRequestFcmV1.from(message);
-        final RequestEntity<MessageRequestFcmV1> request = getRequest(messageRequestFCM);
-        post(request);
-    }
-
-    private RequestEntity<MessageRequestFcmV1> getRequest(
-            MessageRequestFcmV1 messageRequestFCM) {
-        return RequestEntity
-                .post(propertyFcm.getUrl())
-                .headers(headers)
-                .body(messageRequestFCM);
-    }
-
-    private void post(final RequestEntity<MessageRequestFcmV1> request) {
-        restTemplate.exchange(request, String.class);
+        fcmFeignClient.send(messageRequestFCM);
     }
 
     @Recover
-    public void recoverPost(final RestClientException e) {
+    public void recoverPost(final FeignClientException e) {
         // todo(hun): 현재 retryable 메소드의 리턴값이 void입니다. 적당한 리턴 클래스를 추가해야 합니다.
     }
 }
