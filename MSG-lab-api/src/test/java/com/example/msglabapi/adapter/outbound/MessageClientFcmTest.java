@@ -31,7 +31,6 @@ import feign.Request.HttpMethod;
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration
 @EnableTransactionManagement(proxyTargetClass = true)
-//@EnableRetry(proxyTargetClass = true)
 @EnableRetry
 @EnableFeignClients
 class MessageClientFcmTest {
@@ -55,7 +54,7 @@ class MessageClientFcmTest {
     @Test
     @DisplayName("FCM 호출이 실패하면 재요청하는지 테스트")
     void test2() {
-        Request request = Request.create(HttpMethod.POST, "a", Collections.EMPTY_MAP, null, null, null);
+        final Request request = Request.create(HttpMethod.POST, "a", Collections.EMPTY_MAP, null, null, null);
         doThrow(new FeignClientException(404, "Not Found", request, null, null)).when(mockFcmFeignClient).send(
                 any());
         fcm.send(MessageDummy.message);
