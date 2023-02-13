@@ -53,7 +53,7 @@ configure(coveredProjects) { p ->
         }
 
         // Setup the .class, source, and execution directories
-        final fileFilter = ['**/Manifest*.*', 'android/**/*.*', '**/testFixtures/**']
+        final fileFilter = ['**/Manifest*.*', 'android/**/*.*', '**/config/**', '**/testFixtures/**']
 
         sourceDirectories.setFrom files(["${p.projectDir}/src/main/java"])
         classDirectories.setFrom files([fileTree(dir: "${p.buildDir}/classes", excludes: fileFilter)])
