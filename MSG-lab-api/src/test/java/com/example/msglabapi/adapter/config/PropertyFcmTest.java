@@ -1,12 +1,10 @@
-package com.example.msglabapi.adapter.adapter.config;
+package com.example.msglabapi.adapter.config;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import com.example.msglabapi.adapter.config.PropertyFcm;
 
 @SpringBootTest
 class PropertyFcmTest {
