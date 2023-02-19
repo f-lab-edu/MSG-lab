@@ -3,22 +3,27 @@ package com.example.common.domain;
 import javax.validation.constraints.NotEmpty;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 
 @Getter
+@Builder
 @AllArgsConstructor
-@NoArgsConstructor
 public class Notification {
     @NotEmpty
     private String title;
     private String body;
+    private MessageType type;
 
     public void putPrefixIfAbsent() {
-        if (hasPrefix()) {
+        if (isInformation() || hasPrefix()) {
             return;
         }
         addPrefix();
+    }
+
+    public boolean isInformation() {
+        return type == MessageType.INFORMATION;
     }
 
     boolean hasPrefix() {

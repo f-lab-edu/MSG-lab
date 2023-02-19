@@ -10,8 +10,6 @@ repositories {
 
 dependencies {
     implementation 'javax.validation:validation-api:2.0.1.Final'
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.2'
-    testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.9.2'
 }
 
 test {

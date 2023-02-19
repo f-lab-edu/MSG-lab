@@ -1,17 +1,16 @@
 package com.example.common.domain;
 
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.UUID;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 
 @Getter
 @Builder
 @AllArgsConstructor
-@NoArgsConstructor
 public class Message {
     private String id;
 
@@ -19,43 +18,33 @@ public class Message {
 
     private Notification notification;
 
-    private MessageType type;
-
     private LocalDateTime time;
 
-    public Message(String to, Notification notification) {
+    public Message(final String to, final Notification notification) {
         id = UUID.randomUUID().toString();
         this.to = to;
         this.notification = notification;
+        time = LocalDateTime.now();
     }
 
-    public boolean isSendAble() {
-        if (!isCommercial()) {
+    private static boolean isAfterPM9(final LocalTime time) {
+        return time.isAfter(LocalTime.of(20, 59, 59));
+    }
+
+    private static boolean isBeforeAM8(final LocalTime time) {
+        return time.isBefore(LocalTime.of(8, 1, 0));
+    }
+
+    public boolean isSendable() {
+        if (notification.isInformation()) {
             return true;
         }
 
         notification.putPrefixIfAbsent();
-        return availableTime(time.getHour(), time.getMinute(), time.getSecond());
+        return isSendableTime(time.toLocalTime());
     }
 
-    boolean isCommercial() {
-        return MessageType.COMMERCIAL == type;
-    }
-
-    boolean availableTime(int hour, int minute, int second) {
-        if (require(hour < 8) || require(hour > 21)) {
-            return false;
-        }
-        if (require(hour == 8)) {
-            return require(minute > 0);
-        }
-        if (require(hour == 21)) {
-            return require(second > 0);
-        }
-        return true;
-    }
-
-    boolean require(Boolean condition) {
-        return !Boolean.FALSE.equals(condition);
+    boolean isSendableTime(final LocalTime time) {
+        return !isBeforeAM8(time) && !isAfterPM9(time);
     }
 }
