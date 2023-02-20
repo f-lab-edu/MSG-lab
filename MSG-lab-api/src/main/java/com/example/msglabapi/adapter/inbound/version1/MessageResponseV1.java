@@ -1,4 +1,4 @@
-package com.example.msglabapi.adapter.inbound;
+package com.example.msglabapi.adapter.inbound.version1;
 
 import com.example.msglabapi.domain.Notification;
 
