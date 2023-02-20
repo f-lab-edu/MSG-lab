@@ -1,5 +1,6 @@
 package com.example.msglabapi.adapter.inbound;
 
+import static org.hamcrest.Matchers.containsString;
 import static org.mockito.Mockito.mock;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -31,7 +32,13 @@ class MessageControllerTest {
                                .contentType("application/json")
                                .content(PushMessageJsonRequestDummy.CORRECT_VALUE)
                )
-               .andExpect(jsonPath("links").exists())
+               .andExpect(jsonPath("$.id").exists())
+               .andExpect(jsonPath("$.to").value("/topics/news"))
+               .andExpect(jsonPath("$.notification.title").value("Breaking News"))
+               .andExpect(jsonPath("$.notification.body").value("asdad"))
+               .andExpect(jsonPath("$.links[0].rel", containsString("self")))
+               .andExpect(jsonPath("$.links[0].href",
+                                   containsString("http://localhost/push-message")))
                .andExpect(status().isOk());
     }
 
