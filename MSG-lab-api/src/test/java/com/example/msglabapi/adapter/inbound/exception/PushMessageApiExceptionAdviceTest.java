@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import com.example.msglab.PushMessageJsonRequestDummy;
+import com.example.msglab.PushMessageJsonRequestV1Dummy;
 import com.example.msglab.PushMessageJsonResponseDummy;
 import com.example.msglabapi.adapter.inbound.MessageController;
 import com.example.msglabapi.application.PostMessageService;
@@ -26,7 +26,7 @@ class PushMessageApiExceptionAdviceTest {
     @DisplayName("PushMessageApiExceptionAdvice 클래스의 handleHttpMessageConversionException 메소드 테스트")
     void test1() throws Exception {
         mockMvc.perform(post("/push-message").contentType("application/json")
-                                             .content(PushMessageJsonRequestDummy.MISSING_CURLY_BRACKET))
+                                             .content(PushMessageJsonRequestV1Dummy.MISSING_CURLY_BRACKET))
                .andExpect(status().isBadRequest())
                .andExpect(content().string(PushMessageJsonResponseDummy.CONVERSION_EXCEPTION))
                .andExpect(content().contentType("application/problem+json"));

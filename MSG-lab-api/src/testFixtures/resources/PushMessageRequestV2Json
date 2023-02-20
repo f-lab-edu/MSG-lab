@@ -1,0 +1,8 @@
+{
+      "to":"/topics/news",
+      "type":"information",
+      "notification":{
+          "title":"Breaking News",
+          "body":"summer coming"
+      }
+ }

@@ -5,7 +5,7 @@ import com.example.msglabapi.domain.Notification;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-public class PushMessageJsonRequestDummy {
+public class PushMessageJsonRequestV1Dummy {
 
     public static final String MISSING_CURLY_BRACKET = "\n"
                                                        + "  \"to\": \"/topics/news\",\n"
