@@ -4,9 +4,9 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 /**
- * JsonConvert 익셉션에 대한 ProblemDetail입니다.
+ * 익셉션에 대한 Problem Detail
  * <br>
- * 예시는 아래와 같습니다.
+ * 사용 예시는 아래와 같습니다.
  * <br>
  * <pre>
  * {
@@ -18,9 +18,9 @@ import lombok.RequiredArgsConstructor;
  */
 @Getter
 @RequiredArgsConstructor
-public class JsonConvertProblemDetail {
+public class ProblemDetail {
 
-    private final String title = "your request is not convertible";
+    private final String title;
 
-    private final String detail = "json parsing error Please check the format again";
+    private final String detail;
 }
