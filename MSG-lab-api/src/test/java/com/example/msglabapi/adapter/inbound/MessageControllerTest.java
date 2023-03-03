@@ -69,7 +69,7 @@ class MessageControllerTest {
         mockMvc.perform(
                        post("/push-message")
                                .contentType("application/json")
-                               .content(PushMessageJsonRequestDummy.MISSING_CURLY_BRACKET)
+                               .content(PushMessageJsonRequestV1Dummy.MISSING_CURLY_BRACKET)
                )
                .andExpect(jsonPath("title").exists())
                .andExpect(jsonPath("detail").exists())
