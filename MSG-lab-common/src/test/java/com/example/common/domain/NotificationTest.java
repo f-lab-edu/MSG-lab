@@ -9,7 +9,7 @@ class NotificationTest {
     @Test
     @DisplayName("접두어가 존재하지 않으면 넣어주는지 테스트")
     void test1() {
-        final Notification notification = new Notification("특가 세일", "본문", MessageType.COMMERCIAL);
+        final Notification notification = new Notification("특가 세일", "본문");
         notification.putPrefixIfAbsent();
         Assertions.assertTrue(notification.hasPrefix());
     }

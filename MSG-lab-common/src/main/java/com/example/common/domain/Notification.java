@@ -13,17 +13,12 @@ public class Notification {
     @NotEmpty
     private String title;
     private String body;
-    private MessageType type;
 
     public void putPrefixIfAbsent() {
-        if (isInformation() || hasPrefix()) {
+        if (hasPrefix()) {
             return;
         }
         addPrefix();
-    }
-
-    public boolean isInformation() {
-        return type == MessageType.INFORMATION;
     }
 
     boolean hasPrefix() {
