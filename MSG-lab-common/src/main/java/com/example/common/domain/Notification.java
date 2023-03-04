@@ -10,22 +10,16 @@ import lombok.Getter;
 @Builder
 @AllArgsConstructor
 public class Notification {
+    private static final PushMessageResource resource = new PushMessageResource();
     @NotEmpty
     private String title;
     private String body;
 
-    public void putPrefixIfAbsent() {
-        if (hasCommercialPrefix()) {
-            return;
-        }
-        addPrefix();
+    public boolean hasCommercialPrefix() {
+        return title.startsWith(resource.getCommercialPrefix());
     }
 
-    boolean hasCommercialPrefix() {
-        return title.startsWith("(광고)");
-    }
-
-    void addPrefix() {
-        title = "(광고) " + title;
+    public boolean hasUnsubscribeMethodNotificationBody() {
+        return body.endsWith(resource.getUnsubscribeMethod());
     }
 }

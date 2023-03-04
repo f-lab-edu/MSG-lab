@@ -8,10 +8,6 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @NoArgsConstructor
 public class InformationalPushMessage extends PushMessage {
-    @Override
-    public boolean isSendable() {
-        return true;
-    }
 
     @Override
     public boolean isValidNotification() {
