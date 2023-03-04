@@ -7,8 +7,11 @@ import java.nio.charset.StandardCharsets;
 
 import org.springframework.core.io.ClassPathResource;
 
+import lombok.Getter;
+
 public class PushMessageJsonRequestV2Dummy {
     private static final Charset charset = StandardCharsets.UTF_8;
+    @Getter
     private static String correctValue;
 
     static {
@@ -20,9 +23,5 @@ public class PushMessageJsonRequestV2Dummy {
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
-    }
-
-    public static String getCorrectValue() {
-        return correctValue;
     }
 }
