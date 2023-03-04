@@ -15,13 +15,13 @@ public class Notification {
     private String body;
 
     public void putPrefixIfAbsent() {
-        if (hasPrefix()) {
+        if (hasCommercialPrefix()) {
             return;
         }
         addPrefix();
     }
 
-    boolean hasPrefix() {
+    boolean hasCommercialPrefix() {
         return title.startsWith("(광고)");
     }
 

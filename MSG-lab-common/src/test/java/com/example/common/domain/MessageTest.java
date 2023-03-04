@@ -10,20 +10,30 @@ class MessageTest {
 
     private static InformationalPushMessage getInformationMessage(final String to,
                                                                   final Notification notification) {
-        return (InformationalPushMessage) InformationalPushMessage.builder()
-                                                                  .to(to)
-                                                                  .notification(notification)
-                                                                  .build();
+        return InformationalPushMessage.builder()
+                                       .to(to)
+                                       .notification(notification)
+                                       .build();
+    }
+
+    private static InformationalPushMessage getInformationMessage(final String to,
+                                                                  final Notification notification,
+                                                                  LocalDateTime time) {
+        return InformationalPushMessage.builder()
+                                       .to(to)
+                                       .notification(notification)
+                                       .sendingTime(time)
+                                       .build();
     }
 
     private static CommercialPushMessage getCommerceMessage(final String to,
                                                             final Notification notification,
                                                             final LocalDateTime time) {
-        return (CommercialPushMessage) CommercialPushMessage.builder()
-                                                            .to(to)
-                                                            .notification(notification)
-                                                            .sendingTime(time)
-                                                            .build();
+        return CommercialPushMessage.builder()
+                                    .to(to)
+                                    .notification(notification)
+                                    .sendingTime(time)
+                                    .build();
     }
 
     @Test
@@ -75,5 +85,14 @@ class MessageTest {
         Assertions.assertFalse(messageAlmostAtAM8.isSendable());
         Assertions.assertFalse(messageAlmostAtPM9.isSendable());
         Assertions.assertFalse(messageAlmostAtPM11.isSendable());
+    }
+
+    @Test
+    @DisplayName("광고 메시지 이지만 정보성 메시지로 전송되는 경우, 올바른 메시지가 아닌다.")
+    void test5() {
+        final Notification notification = new Notification("(광고) 바겐 세일", "본문");
+        final LocalDateTime timeAlmostAM8 = LocalDateTime.of(2023, 3, 10, 10, 0, 0);
+        final InformationalPushMessage message = getInformationMessage("new", notification, timeAlmostAM8);
+        Assertions.assertFalse(message.isValidNotification());
     }
 }

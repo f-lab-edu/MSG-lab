@@ -24,6 +24,15 @@ public class CommercialPushMessage extends PushMessage {
         return isSendableTime(sendingTime.toLocalTime());
     }
 
+    @Override
+    public boolean isValidNotification() {
+        return isCommercialNotification();
+    }
+
+    private boolean isCommercialNotification() {
+        return notification.hasCommercialPrefix();
+    }
+
     boolean isSendableTime(final LocalTime time) {
         return isAfterAM8(time) && isBeforPM9(time);
     }

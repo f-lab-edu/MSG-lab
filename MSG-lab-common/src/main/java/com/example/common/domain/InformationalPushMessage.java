@@ -12,4 +12,13 @@ public class InformationalPushMessage extends PushMessage {
     public boolean isSendable() {
         return true;
     }
+
+    @Override
+    public boolean isValidNotification() {
+        return isInformationalNotification();
+    }
+
+    private boolean isInformationalNotification() {
+        return !notification.hasCommercialPrefix();
+    }
 }

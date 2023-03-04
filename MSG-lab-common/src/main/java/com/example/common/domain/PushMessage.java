@@ -21,4 +21,6 @@ abstract class PushMessage {
     protected Notification notification;
 
     public abstract boolean isSendable();
+
+    public abstract boolean isValidNotification();
 }

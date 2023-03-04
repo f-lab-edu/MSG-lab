@@ -11,6 +11,6 @@ class NotificationTest {
     void test1() {
         final Notification notification = new Notification("특가 세일", "본문");
         notification.putPrefixIfAbsent();
-        Assertions.assertTrue(notification.hasPrefix());
+        Assertions.assertTrue(notification.hasCommercialPrefix());
     }
 }
