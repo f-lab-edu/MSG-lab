@@ -10,12 +10,12 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @NoArgsConstructor
 public class CommercialPushMessage extends PushMessage {
-    private boolean isAfterPM9(final LocalTime time) {
-        return time.isAfter(LocalTime.of(20, 59, 59));
+    private boolean isBeforPM9(final LocalTime time) {
+        return time.isBefore(LocalTime.of(21, 0, 0));
     }
 
-    private boolean isBeforeAM8(final LocalTime time) {
-        return time.isBefore(LocalTime.of(8, 1, 0));
+    private boolean isAfterAM8(final LocalTime time) {
+        return time.isAfter(LocalTime.of(8, 0, 59));
     }
 
     @Override
@@ -25,6 +25,6 @@ public class CommercialPushMessage extends PushMessage {
     }
 
     boolean isSendableTime(final LocalTime time) {
-        return !isBeforeAM8(time) && !isAfterPM9(time);
+        return isAfterAM8(time) && isBeforPM9(time);
     }
 }
